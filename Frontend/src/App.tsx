@@ -2,16 +2,25 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import './output.css';
-import Products from './components/Products';
 
 // components
 import Navbar from './components/Navbar';
+import Products from './components/Products';
+import ProductPage from './components/ProductPage';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+
+let router = createBrowserRouter([
+  {
+    path: "/",
+    Component: ProductPage,
+  }
+]);
 
 function App() {
   return (
     <>
       <Navbar />
-      <Products />
+      <RouterProvider router={router} />
     </>
   );
 }

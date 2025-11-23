@@ -1,6 +1,12 @@
-
+// import libraries
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+// import needed components and assets
 import ShopBanner from '../imgs/shop-banner-1.jpg'
+
+
 export default function Products(){
+
     return(
         <>
             <div>
@@ -14,7 +20,7 @@ export default function Products(){
                     <div></div>
                     <div>
                         {/* div for the cards */}
-                        <div className='card bg-base-100 w-96 shadow-sm'>
+                        <div className='card bg-base-100 w-96 shadow-sm cursor-pointer' >
                             <img src={ShopBanner} className='image-full' alt="" />
                             {/* div for card body */}
                             <div className='card-body'>
