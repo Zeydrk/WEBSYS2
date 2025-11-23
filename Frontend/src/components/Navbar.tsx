@@ -1,21 +1,23 @@
-// components 
+import React from 'react';
+import logo from '../imgs/istc-logo.png'
 
-// main code
-export default function Navbar(){
-    return(
-        <>
-            <header>
-                <img src="" alt="" />
-                <h1></h1>
-                <nav>
-                    <ul>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                        <li></li>
-                    </ul>
-                </nav>
-            </header>
-        </>
-    )
+export default function Navbar() {
+  return (
+    <nav className="navbar bg-base-100">
+      <div className="navbar-start px-5">
+        <img src={logo} alt="logo.png" className='size-8 mr-2'/>
+        <h1>PROJECT:ISTC</h1>
+      </div>
+      <div className="navbar-end">
+        <ul className="menu menu-horizontal px-5 gap-1.5">
+            <li><button>Home</button></li>
+            <li><button>Profile</button></li>
+            <li><button>Shop</button></li>
+            <li><button>Orders</button></li>
+            <li><button>Contact Us</button></li>
+            <li><button>Cart</button></li>
+        </ul>
+      </div>
+    </nav>
+  );
 }
