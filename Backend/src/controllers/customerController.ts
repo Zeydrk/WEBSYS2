@@ -2,7 +2,7 @@ import { Request, Response } from 'express';
 const db = require('../../models');
 
 // Get all customers
-export const getAllCustomers = async (req: Request, res: Response) => {
+export const getAllCustomers = async (req, res) => {
   try {
     const customers = await db.Customer.findAll();
     res.json(customers);
@@ -57,7 +57,7 @@ export const updateCustomer = async (req, res) => {
 };
 
 // Delete customer
-export const deleteCustomer = async (reqt, res) => {
+export const deleteCustomer = async (req, res) => {
   try {
     const customer = await db.Customer.findByPk(req.params.id);
     
