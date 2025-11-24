@@ -12,7 +12,7 @@ export const getAllCustomers = async (req: Request, res: Response) => {
 };
 
 // Get one customer by ID
-export const getCustomerById = async (req: Request, res: Response) => {
+export const getCustomerById = async (req, res) => {
   try {
     const customer = await db.Customer.findByPk(req.params.id);
     if (!customer) {
@@ -25,7 +25,7 @@ export const getCustomerById = async (req: Request, res: Response) => {
 };
 
 // Create new customer
-export const createCustomer = async (req: Request, res: Response) => {
+export const createCustomer = async (req, res) => {
   try {
     const { name, email, contactNo } = req.body;
     const customer = await db.Customer.create({
@@ -40,7 +40,7 @@ export const createCustomer = async (req: Request, res: Response) => {
 };
 
 // Update customer
-export const updateCustomer = async (req: Request, res: Response) => {
+export const updateCustomer = async (req, res) => {
   try {
     const { name, email, contactNo } = req.body;
     const customer = await db.Customer.findByPk(req.params.id);
@@ -57,7 +57,7 @@ export const updateCustomer = async (req: Request, res: Response) => {
 };
 
 // Delete customer
-export const deleteCustomer = async (req: Request, res: Response) => {
+export const deleteCustomer = async (reqt, res) => {
   try {
     const customer = await db.Customer.findByPk(req.params.id);
     
