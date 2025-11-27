@@ -3,7 +3,7 @@ import logo from '../imgs/istc-logo.png'
 
 export default function Navbar() {
   return (
-    <nav className="navbar bg-base-100">
+    <nav className="navbar bg-linear-to-r from-slate-900 via-purple-900 to-slate-900 border-b border-purple-500/30 shadow-lg shadow-purple-500/20">
       <div className="navbar-start px-5">
         <img src={logo} alt="logo.png" className='size-8 mr-2'/>
         <h1>PROJECT:ISTC</h1>
