@@ -12,7 +12,11 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 let router = createBrowserRouter([
   {
     path: "/",
-    Component: ProductPage,
+    Component: Products,
+  },
+  {
+    path: "products",
+    Component: ProductPage
   }
 ]);
 
