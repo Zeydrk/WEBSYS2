@@ -14,7 +14,7 @@ module.exports = {
         unique: true
       },
       distanceFromSun: {
-        type: Sequelize.INTEGER, // Assuming distance is stored in arbitrary units as an integer
+        type: Sequelize.FLOAT, // Assuming distance is stored in arbitrary units as an integer
         allowNull: false
       },
       createdAt: {
