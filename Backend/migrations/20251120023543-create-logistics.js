@@ -10,10 +10,11 @@ module.exports = {
       },
       name: {
         type: Sequelize.STRING,
-        allowNull: false
+        allowNull: false,
+        unique: true // Recommended: Ensures distinct company names
       },
       delivery_rate: {
-        type: Sequelize.DECIMAL(5, 2), // Example: up to 999.99
+        type: Sequelize.DECIMAL(5, 2), 
         allowNull: false
       },
       createdAt: {

@@ -8,6 +8,16 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
+      planetId: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'Planets', 
+          key: 'planetId', 
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT'
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false
@@ -18,7 +28,8 @@ module.exports = {
         unique: true
       },
       contactNo: {
-        type: Sequelize.STRING
+        type: Sequelize.STRING,
+        allowNull: false,
       },
       createdAt: {
         allowNull: false,

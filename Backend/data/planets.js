@@ -1,0 +1,65 @@
+module.exports = [
+    {
+      planetId: '0a8f7c6e-5d4b-3a2b-1f0e-9d8c7b6a5432', 
+      planetName: "Mercury",
+      distanceFromSun: 57.9, 
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      planetId: '1b9g8d7f-6e5c-4b3a-2g1h-0i9j8k7l6m5n', 
+      planetName: "Venus",
+      distanceFromSun: 108.2,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      planetId: '2c0h9e8g-7f6d-5c4b-3h2i-1j0k9l8m7n6o', 
+      planetName: "Earth",
+      distanceFromSun: 149.6,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      planetId: '3d1i0f9h-8g7e-6d5c-4i3j-2k1l0m9n8o7p', 
+      planetName: "Mars",
+      distanceFromSun: 227.9,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      planetId: '4e2j1g0i-9h8f-7e6d-5j4k-3l2m1n0o9p8q',
+      planetName: "Jupiter",
+      distanceFromSun: 778.5,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      planetId: '5f3k2h1j-0i9g-8f7e-6k5l-4m3n2o1p0q9r',
+      planetName: "Saturn",
+      distanceFromSun: 1434.0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      planetId: '6g4l3i2k-1j0h-9g8f-7l6m-5n4o3p2q1r0s',
+      planetName: "Uranus",
+      distanceFromSun: 2871.0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      planetId: '7h5m4j3l-2k1i-0h9g-8m7n-6o5p4q3r2s1t',
+      planetName: "Neptune",
+      distanceFromSun: 4495.0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    },
+    {
+      planetId: '8i6n5k4m-3l2j-1i0h-9n8o-7p6q5r4s3t2u',
+      planetName: "Pluto",
+      distanceFromSun: 5900.0,
+      createdAt: new Date(),
+      updatedAt: new Date(),
+    }
+  ];
