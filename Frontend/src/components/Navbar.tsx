@@ -1,5 +1,7 @@
 import React from "react";
 import logo from "../imgs/istc-logo.png";
+import { Link } from "react-router";
+import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -10,11 +12,12 @@ export default function Navbar() {
       </div>
       <div className="navbar-end">
         <ul className="menu menu-horizontal px-5 gap-1.5">
-          <li>
+          <li> 
             <button>Home</button>
           </li>
           <li>
-            <button>Shop</button>
+            <Link to="/"><button>Shop</button></Link>
+            
           </li>
           <li>
             <button>Orders</button>
