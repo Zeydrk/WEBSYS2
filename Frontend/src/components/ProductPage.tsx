@@ -16,7 +16,7 @@ export default function ProductPage() {
               <li>Product-Page</li>
             </ul>
           </div>
-          <div className="card bg-base-300 shadow-sm p-5">
+          <div className="card bg-slate-800/50 backdrop-blur-sm rounded-2xl shadow-2xl border border-purple-500/20 overflow-hidden">
             {/* picture and description*/}
             <div className="flex-1">
               <div className="flex gap-6">
