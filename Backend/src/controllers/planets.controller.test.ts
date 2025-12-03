@@ -4,11 +4,10 @@ import {
   createPlanet, 
   updatePlanet, 
   deletePlanet 
-} from './planetsController'; // Adjust path to match your file name
+} from './planetsController';
 import { Request, Response } from 'express';
 
-// 1. Mock the Sequelize Model
-// We define Pets here so it exists when the controller tries to reference db.Pets in the 'include' array
+
 const db = require('../../models');
 
 jest.mock('../../models', () => ({
@@ -18,7 +17,7 @@ jest.mock('../../models', () => ({
     create: jest.fn(),
   },
   Pets: { 
-    // This serves as a placeholder for the model used in associations
+
     name: 'MockPetModel' 
   },
 }));

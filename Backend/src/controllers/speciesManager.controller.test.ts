@@ -4,20 +4,19 @@ import {
   createManager, 
   updateManager, 
   deleteManager 
-} from './speciesManagerController'; // Adjust path to match your file name
+} from './speciesManagerController';
 import { Request, Response } from 'express';
 
-// 1. Mock the Sequelize Model
+
 const db = require('../../models');
 
 jest.mock('../../models', () => ({
-  Species_Manager: { // Note: Matching the underscore naming in your controller
+  Species_Manager: { 
     findAll: jest.fn(),
     findByPk: jest.fn(),
     create: jest.fn(),
   },
   Pets: { 
-    // Necessary for the 'include' array in getAll and getById
     name: 'MockPetsModel' 
   },
 }));

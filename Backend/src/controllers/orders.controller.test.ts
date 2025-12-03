@@ -4,10 +4,10 @@ import {
   createOrder, 
   updateOrderStatus, 
   deleteOrder 
-} from './ordersController'; // Adjust path
+} from './ordersController';
 import { Request, Response } from 'express';
 
-// 1. Mock the Sequelize Models
+
 const db = require('../../models');
 
 jest.mock('../../models', () => ({
@@ -101,7 +101,7 @@ describe('Orders Controller', () => {
 
   // --- Test: createOrder (Complex Logic) ---
   describe('createOrder', () => {
-    // Setup generic valid body for reuse
+    
     const validBody = {
       customerId: 1,
       logisticsId: 1,
@@ -150,7 +150,7 @@ describe('Orders Controller', () => {
       expect(db.Orders.create).toHaveBeenCalledWith(expect.objectContaining({
         customerId: 1,
         logisticsId: 1,
-        totalCost: 220, // Check if logic worked
+        totalCost: 220,
         status: 'Pending',
         estimatedDeliveryDate: expect.any(Date)
       }));

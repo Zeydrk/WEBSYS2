@@ -5,11 +5,10 @@ import {
   updatePet, 
   deletePet, 
   updateStock 
-} from './petsController'; // Adjust path to match your file name
+} from './petsController'; 
 import { Request, Response } from 'express';
 
-// 1. Mock the Sequelize Model
-// We need to mock Planets as well because it's used in the 'include' statement
+
 const db = require('../../models');
 
 jest.mock('../../models', () => ({
@@ -18,7 +17,7 @@ jest.mock('../../models', () => ({
     findByPk: jest.fn(),
     create: jest.fn(),
   },
-  Planets: { name: 'MockPlanetModel' }, // Simple object to represent the model in 'include'
+  Planets: { name: 'MockPlanetModel' }, 
 }));
 
 describe('Pets Controller', () => {
@@ -115,7 +114,7 @@ describe('Pets Controller', () => {
 
       await createPet(req as Request, res as Response);
 
-      expect(db.Pets.create).toHaveBeenCalledWith(req.body); // Checks arguments passed to create
+      expect(db.Pets.create).toHaveBeenCalledWith(req.body); 
       expect(res.status).toHaveBeenCalledWith(201);
       expect(jsonMock).toHaveBeenCalledWith(createdPet);
     });
@@ -152,7 +151,7 @@ describe('Pets Controller', () => {
   describe('updateStock', () => {
     it('should update only the stock quantity', async () => {
       req.params = { id: '1' };
-      req.body = { quantity: 50 }; // Input expected by controller
+      req.body = { quantity: 50 };
 
       const mockUpdateFn = jest.fn();
       const mockPetInstance = { 

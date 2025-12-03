@@ -4,10 +4,10 @@ import {
   createLogistics, 
   updateLogistics, 
   deleteLogistics 
-} from './logisticsController'; // Adjust path to match your file name
+} from './logisticsController';
 import { Request, Response } from 'express';
 
-// 1. Mock the Sequelize Model
+
 const db = require('../../models');
 jest.mock('../../models', () => ({
   Logistics: {
@@ -23,18 +23,18 @@ describe('Logistics Controller', () => {
   let statusMock: jest.Mock;
   let jsonMock: jest.Mock;
 
-  // 2. Setup reusable mocks before each test
+
   beforeEach(() => {
     req = {};
     jsonMock = jest.fn();
-    statusMock = jest.fn().mockReturnValue({ json: jsonMock }); // Allows chaining .status().json()
+    statusMock = jest.fn().mockReturnValue({ json: jsonMock });
 
     res = {
       json: jsonMock,
       status: statusMock,
     };
     
-    jest.clearAllMocks(); // Clear previous calls to mocks
+    jest.clearAllMocks();
   });
 
   // --- Test: getAllLogistics ---
@@ -110,7 +110,7 @@ describe('Logistics Controller', () => {
       req.params = { id: '1' };
       req.body = { name: 'DHL Express', delivery_rate: 52 };
 
-      // Mock the INSTANCE returned by findByPk
+     
       const mockUpdateFn = jest.fn(); 
       const mockProviderInstance = { 
         id: 1, 
@@ -124,7 +124,7 @@ describe('Logistics Controller', () => {
       await updateLogistics(req as Request, res as Response);
 
       expect(db.Logistics.findByPk).toHaveBeenCalledWith('1');
-      // Verify update was called with new data
+      
       expect(mockProviderInstance.update).toHaveBeenCalledWith(req.body); 
       expect(res.json).toHaveBeenCalledWith(mockProviderInstance);
     });
@@ -144,7 +144,7 @@ describe('Logistics Controller', () => {
     it('should delete a provider if found', async () => {
       req.params = { id: '1' };
 
-      // Mock the instance with a .destroy method
+      
       const mockDestroyFn = jest.fn();
       const mockProviderInstance = { 
         id: 1, 
