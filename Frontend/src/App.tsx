@@ -1,13 +1,11 @@
-import React from 'react';
-import logo from './logo.svg';
+// styles and libraries
 import './App.css';
-import './output.css';
 
 // components
 import Navbar from './components/Navbar';
 import Products from './components/Products';
 import ProductPage from './components/ProductPage';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+// import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 // let router = createBrowserRouter([

@@ -1,7 +1,7 @@
-import React from "react";
+// import React from "react";
 import logo from "../imgs/istc-logo.png";
 import { Link } from "react-router";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   return (
