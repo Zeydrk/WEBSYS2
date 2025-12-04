@@ -1,10 +1,10 @@
 // import libraries
 // import React from 'react';
 // import ReactDOM from 'react-dom/client';
-import { Link } from 'react-router-dom';
 
 // import needed components and assets
 import image from '../imgs/shop-banner-1.jpg'
+import { Link } from 'react-router-dom';
 
 
 export default function Products() {
