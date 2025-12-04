@@ -83,17 +83,14 @@ export default function ProductPage() {
           </div>
         </div>
         {/* div for featured products*/}
-        <div className="text-center">
-          {/* div for header */}
+        {/* <div className="text-center">
           <div className="text-6xl">
             <h2>Featured products</h2>
           </div>
-          {/* products div */}
           <div>
-            {/* specific product div */}
             <div></div>
           </div>
-        </div>
+        </div> */}
       </div>
     </>
   );
