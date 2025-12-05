@@ -111,7 +111,7 @@ export default function Products() {
 
           {/* ---------------- Product Grid ---------------- */}
           <div className="w-full">
-            {/* Using CSS Grid instead of Flex for better alignment */}
+          
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
               
               {/* Product Card 1 */}
