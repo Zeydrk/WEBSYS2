@@ -1,25 +1,23 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Order_Pets', {
-      orderSpeciesId: {
+    await queryInterface.createTable('Cart_Items', {
+      cartItemId: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      
-      orderId: {
+      cartId: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
-          model: 'Orders',
-          key: 'orderId',
+          model: 'Carts',
+          key: 'cartId'
         },
         onUpdate: 'CASCADE',
         onDelete: 'CASCADE'
       },
-    
       petId: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -35,18 +33,6 @@ module.exports = {
         allowNull: false,
         defaultValue: 1
       },
-      speciesBaseCost: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
-      transportCostApplied: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
-      finalItemCost: {
-        type: Sequelize.DECIMAL(10, 2),
-        allowNull: false
-      },
       createdAt: {
         allowNull: false,
         type: Sequelize.DATE
@@ -56,15 +42,8 @@ module.exports = {
         type: Sequelize.DATE
       }
     });
-
-    
-    await queryInterface.addConstraint('Order_Pets', {
-        fields: ['orderId', 'petId'],
-        type: 'unique',
-        name: 'unique_order_pet_item'
-    });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Order_Pets');
+    await queryInterface.dropTable('Cart_Items');
   }
 };

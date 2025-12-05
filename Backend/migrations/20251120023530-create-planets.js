@@ -1,20 +1,20 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Logistics', {
-      logisticsId: {
+    await queryInterface.createTable('Planets', {
+      planetId: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      name: {
+      planetName: {
         type: Sequelize.STRING,
         allowNull: false,
-        unique: true 
+        unique: true
       },
-      delivery_rate: {
-        type: Sequelize.DECIMAL(5, 2), 
+      distanceFromSun: {
+        type: Sequelize.FLOAT,
         allowNull: false
       },
       createdAt: {
@@ -28,6 +28,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Logistics');
+    await queryInterface.dropTable('Planets');
   }
 };

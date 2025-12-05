@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      // Foreign Key to Customer
+    
       customerId: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -19,7 +19,7 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT'
       },
-      // Foreign Key to Logistics
+    
       logisticsId: {
         type: Sequelize.UUID,
         allowNull: false,
