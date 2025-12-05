@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-const db = require('../../models');
+const getDb = () => require('../../models');
 
 // Get all logistics providers
-export const getAllLogistics = async (req, res) => {
+export const getAllLogistics = async (req: Request, res: Response) => {
   try {
-    const logistics = await db.Logistics.findAll();
+    const logistics = await getDb().Logistics.findAll();
     res.json(logistics);
   } catch (error) {
     res.status(500).json({ message: 'Error getting logistics', error });
@@ -12,9 +12,9 @@ export const getAllLogistics = async (req, res) => {
 };
 
 // Get one logistics provider by ID
-export const getLogisticsById = async (req, res) => {
+export const getLogisticsById = async (req: Request, res: Response) => {
   try {
-    const logistics = await db.Logistics.findByPk(req.params.id);
+    const logistics = await getDb().Logistics.findByPk(req.params.id);
     
     if (!logistics) {
       return res.status(404).json({ message: 'Logistics provider not found' });
@@ -27,11 +27,11 @@ export const getLogisticsById = async (req, res) => {
 };
 
 // Create new logistics provider
-export const createLogistics = async (req, res) => {
+export const createLogistics = async (req: Request, res: Response) => {
   try {
     const { name, delivery_rate } = req.body;
     
-    const logistics = await db.Logistics.create({
+    const logistics = await getDb().Logistics.create({
       name,
       delivery_rate
     });
@@ -43,10 +43,10 @@ export const createLogistics = async (req, res) => {
 };
 
 // Update logistics provider
-export const updateLogistics = async (req, res) => {
+export const updateLogistics = async (req: Request, res: Response) => {
   try {
     const { name, delivery_rate } = req.body;
-    const logistics = await db.Logistics.findByPk(req.params.id);
+    const logistics = await getDb().Logistics.findByPk(req.params.id);
     
     if (!logistics) {
       return res.status(404).json({ message: 'Logistics provider not found' });
@@ -60,9 +60,9 @@ export const updateLogistics = async (req, res) => {
 };
 
 // Delete logistics provider
-export const deleteLogistics = async (req, res) => {
+export const deleteLogistics = async (req: Request, res: Response) => {
   try {
-    const logistics = await db.Logistics.findByPk(req.params.id);
+    const logistics = await getDb().Logistics.findByPk(req.params.id);
     
     if (!logistics) {
       return res.status(404).json({ message: 'Logistics provider not found' });
