@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-const db = require('../../models');
+const getDb = () => require('../../models');
 
 // Get all planets
-export const getAllPlanets = async (req, res) => {
+export const getAllPlanets = async (req: Request, res: Response) => {
   try {
-    const planets = await db.Planets.findAll();
+    const planets = await getDb().Planets.findAll();
     res.json(planets);
   } catch (error) {
     res.status(500).json({ message: 'Error getting planets', error });
@@ -12,11 +12,11 @@ export const getAllPlanets = async (req, res) => {
 };
 
 // Get one planet by ID
-export const getPlanetById = async (req, res) => {
+export const getPlanetById = async (req: Request, res: Response) => {
   try {
-    const planet = await db.Planets.findByPk(req.params.id, {
+    const planet = await getDb().Planets.findByPk(req.params.id, {
       include: [{
-        model: db.Pets,
+        model: getDb().Pets,
         as: 'nativePets'
       }]
     });
@@ -32,11 +32,11 @@ export const getPlanetById = async (req, res) => {
 };
 
 // Create new planet
-export const createPlanet = async (req, res) => {
+export const createPlanet = async (req: Request, res: Response) => {
   try {
     const { planetName, distanceFromSun } = req.body;
     
-    const planet = await db.Planets.create({
+    const planet = await getDb().Planets.create({
       planetName,
       distanceFromSun
     });
@@ -48,10 +48,10 @@ export const createPlanet = async (req, res) => {
 };
 
 // Update planet
-export const updatePlanet = async (req, res) => {
+export const updatePlanet = async (req: Request, res: Response) => {
   try {
     const { planetName, distanceFromSun } = req.body;
-    const planet = await db.Planets.findByPk(req.params.id);
+    const planet = await getDb().Planets.findByPk(req.params.id);
     
     if (!planet) {
       return res.status(404).json({ message: 'Planet not found' });
@@ -65,9 +65,9 @@ export const updatePlanet = async (req, res) => {
 };
 
 // Delete planet
-export const deletePlanet = async (req, res) => {
+export const deletePlanet = async (req: Request, res: Response) => {
   try {
-    const planet = await db.Planets.findByPk(req.params.id);
+    const planet = await getDb().Planets.findByPk(req.params.id);
     
     if (!planet) {
       return res.status(404).json({ message: 'Planet not found' });
