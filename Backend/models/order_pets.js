@@ -36,8 +36,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'Order_Pets',
-    // Ensures (orderId, petId) is treated as a unique pair if using it as a composite key
-    // Though we kept orderSpeciesId as the single PK, this helps enforce business rules.
+    
     indexes: [{
       unique: true,
       fields: ['orderId', 'petId']

@@ -1,21 +1,26 @@
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable('Logistics', {
-      logisticsId: {
+    await queryInterface.createTable('Carts', {
+      cartId: {
         allowNull: false,
         primaryKey: true,
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      name: {
-        type: Sequelize.STRING,
-        allowNull: false,
-        unique: true 
+      customerId: {
+        type: Sequelize.UUID,
+        allowNull: true,
+        references: {
+          model: 'Customers',
+          key: 'customerId'
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'CASCADE'
       },
-      delivery_rate: {
-        type: Sequelize.DECIMAL(5, 2), 
-        allowNull: false
+      status: {
+         type: Sequelize.STRING,
+         defaultValue: 'active'
       },
       createdAt: {
         allowNull: false,
@@ -28,6 +33,6 @@ module.exports = {
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Logistics');
+    await queryInterface.dropTable('Carts');
   }
 };
