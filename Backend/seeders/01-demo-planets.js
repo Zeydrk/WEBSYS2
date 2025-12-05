@@ -4,10 +4,10 @@ const planets = require('../data/planets');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('planets', planets, {});
+    return queryInterface.bulkInsert('Planets', planets, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('planets', null, {});
+    return queryInterface.bulkDelete('Planets', null, {});
   }
 };

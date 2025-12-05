@@ -4,10 +4,10 @@ const customers = require('../data/customer');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('customers', customers, {});
+    return queryInterface.bulkInsert('Customers', customers, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('customers', null, {});
+    return queryInterface.bulkDelete('Customers', null, {});
   }
 };

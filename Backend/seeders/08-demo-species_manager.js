@@ -4,10 +4,10 @@ const species_manager = require('../data/species_manager');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('species_managers', species_manager, {});
+    return queryInterface.bulkInsert('Species_Managers', species_manager, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('species_managers', null, {});
+    return queryInterface.bulkDelete('Species_Managers', null, {});
   }
 };

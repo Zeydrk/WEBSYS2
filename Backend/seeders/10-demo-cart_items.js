@@ -4,10 +4,10 @@ const cart_items = require('../data/cart_items');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('cart_items', cart_items, {});
+    return queryInterface.bulkInsert('Cart_Items', cart_items, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('cart_items', null, {});
+    return queryInterface.bulkDelete('Cart_Items', null, {});
   }
 };
