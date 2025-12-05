@@ -7,23 +7,23 @@ export default function useProduct(){
     // variables    
     const [product, setProduct] = useState('');
     // edit when env is injected
-    const API_URL = "http://localhost:3000"
+    const API_URL = "http://localhost:4200"
     
-    async function fetchProducts(products:object){
-        const response = await axios.get(`${API_URL}/api/product`, products);
+    async function fetchPets(){
+        const response = await axios.get(`${API_URL}/pets`);
         setProduct(response.data);
-        return response
+        return response.data
     }
 
-    async function fetchProductById(id:string){
-        const response = await axios.get(`${API_URL}/api/product/${id}`);
+    async function fetchPetsById(id:string){
+        const response = await axios.get(`${API_URL}/pets/${id}`);
         setProduct(response.data);
         return response
     }
 
     return{
         product,
-        fetchProducts,
-        fetchProductById
+        fetchPets,
+        fetchPetsById
     }
 }

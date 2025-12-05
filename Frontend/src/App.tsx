@@ -5,6 +5,9 @@ import './App.css';
 import Navbar from './components/Navbar';
 import Products from './components/Products';
 import ProductPage from './components/ProductPage';
+import Cart from './components/Cart';
+import Home from './components/Home';
+import Orders from './components/Orders';
 // import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
@@ -25,8 +28,11 @@ function App() {
       <Router>
         <Navbar />  
         <Routes>
-          <Route path='/' element= {<Products/>}></Route>
-          <Route path='/product' element={<ProductPage/>}></Route>
+          <Route path='/' element= {<Home/>}></Route>
+          <Route path='/products' element= {<Products/>}></Route>
+          <Route path='/products/:id' element={<ProductPage/>}></Route>
+          <Route path='/orders' element={<Orders/>}></Route>
+          <Route path='/cart' element={<Cart/>}></Route>
         </Routes>
       </Router>
       {/* <RouterProvider router={router} /> */}
