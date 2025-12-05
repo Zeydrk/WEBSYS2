@@ -1,7 +1,7 @@
-import React from "react";
+// import React from "react";
 import logo from "../imgs/istc-logo.png";
 import { Link } from "react-router";
-import { useNavigate } from "react-router-dom";
+// import { useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   return (
@@ -13,20 +13,19 @@ export default function Navbar() {
       <div className="navbar-end">
         <ul className="menu menu-horizontal px-5 gap-1.5">
           <li> 
-            <button>Home</button>
+            <Link to="/"><button>Home</button></Link>
           </li>
           <li>
-            <Link to="/"><button>Shop</button></Link>
-            
+            <Link to="/products"><button>Shop</button></Link>
           </li>
           <li>
-            <button>Orders</button>
+            <Link to="/orders"><button>Orders</button></Link>
           </li>
           <li>
             <button>Contact Us</button>
           </li>
           <li>
-            <button>Cart</button>
+            <Link to="/cart"><button>Cart</button></Link>
           </li>
           <li>
             <div className="dropdown dropdown-hover text-center">

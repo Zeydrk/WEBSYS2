@@ -10,7 +10,7 @@ app.get('/', (_, res) => {
   res.send('Intergalactic Species Trading System');
 });
 
-app.use('/api',  );
+// app.use('/api');
 
 app.listen(PORT, () => {
   console.log(`Server running at http://localhost:${PORT}`);
