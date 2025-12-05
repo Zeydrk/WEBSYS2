@@ -88,11 +88,11 @@ const getOrderCount = (status: OrderStatus) => {
 const getStatusDetails = (status: OrderStatus) => {
     switch (status) {
         case 'onShipping':
-            return { icon: '🚀', text: 'On Shipping', bg: 'bg-green-500', shadow: 'shadow-green-900/50' };
+            return { icon: '', text: 'On Shipping', bg: 'bg-green-500', shadow: 'shadow-green-900/50' };
         case 'arrived':
-            return { icon: '✅', text: 'Arrived', bg: 'bg-blue-500', shadow: 'shadow-blue-900/50' };
+            return { icon: '', text: 'Arrived', bg: 'bg-blue-500', shadow: 'shadow-blue-900/50' };
         case 'cancelled':
-            return { icon: '❌', text: 'Cancelled', bg: 'bg-red-500', shadow: 'shadow-red-900/50' };
+            return { icon: '', text: 'Cancelled', bg: 'bg-red-500', shadow: 'shadow-red-900/50' };
         default:
             return { icon: '', text: '', bg: '', shadow: '' };
     }
