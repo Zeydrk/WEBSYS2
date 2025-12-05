@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      // Foreign Key to Planets
+      
       planetId: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -38,6 +38,9 @@ module.exports = {
         type: Sequelize.INTEGER,
         allowNull: false,
         defaultValue: 0
+      },
+      imageURL: {
+        type: Sequelize.STRING
       },
       createdAt: {
         allowNull: false,

@@ -8,7 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      // Foreign Key to Pets
+      
       petId: {
         type: Sequelize.UUID,
         allowNull: false,
@@ -17,8 +17,8 @@ module.exports = {
           key: 'petId',
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT', // A manager is linked to a pet type
-        unique: true // Assuming one manager per pet species for simplicity
+        onDelete: 'RESTRICT',
+        unique: true
       },
       name: {
         type: Sequelize.STRING,
