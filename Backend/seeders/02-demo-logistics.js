@@ -4,10 +4,10 @@ const logistics = require('../data/logistics');
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('logistics', logistics, {});
+    return queryInterface.bulkInsert('Logistics', logistics, {});
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('logistics', null, {});
+    return queryInterface.bulkDelete('Logistics', null, {});
   }
 };
