@@ -72,7 +72,7 @@ export default function Cart() {
                 <p className="text-purple-300 mt-2">{cartItems.length} cosmic companions ready for adoption</p>
               </div>
 
-              {/* Column Headers - Hidden on mobile */}
+              {/* Column Headers */}
               <div className="hidden md:grid md:grid-cols-12 gap-4 px-6 py-4 bg-slate-900/50 border-b border-purple-500/10">
                 <div className="col-span-4">
                   <h3 className="text-sm font-semibold text-purple-300">Product</h3>
