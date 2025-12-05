@@ -6,7 +6,6 @@ export default function ProductPage() {
   return (
     <>
       {/* main div */}
-      {/* Corrected gradient syntax to standard Tailwind and set default text to light gray */}
       <div className="min-h-screen bg-linear-to-b from-slate-900 via-purple-900 to-slate-900 text-gray-100 font-sans">
         
         {/* product pic and description and breadcrumbs*/}
@@ -20,7 +19,7 @@ export default function ProductPage() {
             </ul>
           </div>
           
-          {/* Main Product Card - Glass Effect */}
+          {/* Main Product Card  */}
           <div className="card bg-slate-800/50 backdrop-blur-md rounded-2xl shadow-2xl border border-purple-500/20 overflow-hidden">
             
             {/* picture and description*/}
@@ -67,7 +66,6 @@ export default function ProductPage() {
                   </div>
 
                   {/* species and planet */}
-                  {/* Improved layout for side-by-side display */}
                   <div className="flex flex-col sm:flex-row gap-4 sm:gap-8 mt-2">
                     <div className="text-xl">
                       <h4><span className="text-purple-300">Species:</span> <span className="font-semibold">Xylo-Pet</span></h4>
@@ -82,7 +80,7 @@ export default function ProductPage() {
                   <div className="card-actions flex flex-row gap-4 mt-auto">
                     {/* quantity */}
                     <div className="flex items-end">
-                      {/* Styled input for dark theme and use DaisyUI class */}
+                     
                       <input
                         type="number"
                         className="input input-bordered w-20 bg-slate-900/50 border-white/20 text-white placeholder-slate-500"
