@@ -127,7 +127,7 @@ export default function Products() {
                     <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
                       <div className="flex flex-col">
                         <span className="text-xs text-gray-300 uppercase">Price</span>
-                        <span className="text-xl font-bold text-primary-content">$450.00</span>
+                        <span className="text-xl font-bold text-primary-content">450.00 GC</span>
                       </div>
                       <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
                         Add to cart
@@ -149,7 +149,7 @@ export default function Products() {
                   <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
                     <div className="flex flex-col">
                       <span className="text-xs text-gray-300 uppercase">Price</span>
-                      <span className="text-xl font-bold text-primary-content">$300.00</span>
+                      <span className="text-xl font-bold text-primary-content">300.00 GC</span>
                     </div>
                     <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">Add to cart</button>
                   </div>
@@ -168,7 +168,7 @@ export default function Products() {
                   <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
                     <div className="flex flex-col">
                       <span className="text-xs text-gray-300 uppercase">Price</span>
-                      <span className="text-xl font-bold text-primary-content">$150.00</span>
+                      <span className="text-xl font-bold text-primary-content">150.00 GC</span>
                     </div>
                     <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">Add to cart</button>
                   </div>
@@ -187,7 +187,7 @@ export default function Products() {
                   <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
                     <div className="flex flex-col">
                       <span className="text-xs text-gray-300 uppercase">Price</span>
-                      <span className="text-xl font-bold text-primary-content">$900.00</span>
+                      <span className="text-xl font-bold text-primary-content">900.00 GC</span>
                     </div>
                     <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">Add to cart</button>
                   </div>
@@ -206,7 +206,7 @@ export default function Products() {
                   <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
                     <div className="flex flex-col">
                       <span className="text-xs text-gray-300 uppercase">Price</span>
-                      <span className="text-xl font-bold text-primary-content">$120.00</span>
+                      <span className="text-xl font-bold text-primary-content">120.00 GC</span>
                     </div>
                     <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">Add to cart</button>
                   </div>
