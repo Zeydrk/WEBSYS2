@@ -1,21 +1,21 @@
 import { Request, Response } from 'express';
-const db = require('../../models');
+const getDb = () => require('../../models');
 
 // Get all orders
-export const getAllOrders = async (req, res) => {
+export const getAllOrders = async (req: Request, res: Response) => {
   try {
-    const orders = await db.Orders.findAll({
+    const orders = await getDb().Orders.findAll({
       include: [
         {
-          model: db.Customer,
+          model: getDb().Customer,
           as: 'customer'
         },
         {
-          model: db.Logistics,
+          model: getDb().Logistics,
           as: 'logisticsProvider'
         },
         {
-          model: db.Pets,
+          model: getDb().Pets,
           as: 'items'
         }
       ]
@@ -27,20 +27,20 @@ export const getAllOrders = async (req, res) => {
 };
 
 // Get one order by ID
-export const getOrderById = async (req, res) => {
+export const getOrderById = async (req: Request, res: Response) => {
   try {
-    const order = await db.Orders.findByPk(req.params.id, {
+    const order = await getDb().Orders.findByPk(req.params.id, {
       include: [
         {
-          model: db.Customer,
+          model: getDb().Customer,
           as: 'customer'
         },
         {
-          model: db.Logistics,
+          model: getDb().Logistics,
           as: 'logisticsProvider'
         },
         {
-          model: db.Pets,
+          model: getDb().Pets,
           as: 'items'
         }
       ]
@@ -57,7 +57,7 @@ export const getOrderById = async (req, res) => {
 };
 
 // Create new order
-export const createOrder = async (req, res) => {
+export const createOrder = async (req: Request, res: Response) => {
   try {
     const {
       customerId,
@@ -66,12 +66,38 @@ export const createOrder = async (req, res) => {
       items 
     } = req.body;
 
+    // Validate input
+    if (!customerId || !logisticsId || !deliveryPlanet) {
+      return res.status(400).json({ message: 'Missing required fields: customerId, logisticsId, deliveryPlanet' });
+    }
+
+    if (!items || !Array.isArray(items) || items.length === 0) {
+      return res.status(400).json({ message: 'Items array is required and must not be empty' });
+    }
+
+    // Validate customer exists
+    const customer = await getDb().Customer.findByPk(customerId);
+    if (!customer) {
+      return res.status(404).json({ message: `Customer ${customerId} not found` });
+    }
+
+    // Fetch logistics provider once (outside the loop)
+    const logistics = await getDb().Logistics.findByPk(logisticsId);
+    if (!logistics) {
+      return res.status(404).json({ message: `Logistics provider ${logisticsId} not found` });
+    }
+
     // Calculate total cost
     let totalCost = 0;
     const orderItems = [];
 
     for (const item of items) {
-      const pet = await db.Pets.findByPk(item.petId);
+      // Validate item structure
+      if (!item.petId || !item.quantity || item.quantity <= 0) {
+        return res.status(400).json({ message: 'Each item must have petId and quantity > 0' });
+      }
+
+      const pet = await getDb().Pets.findByPk(item.petId);
       
       if (!pet) {
         return res.status(404).json({ message: `Pet ${item.petId} not found` });
@@ -84,7 +110,6 @@ export const createOrder = async (req, res) => {
         });
       }
 
-      const logistics = await db.Logistics.findByPk(logisticsId);
       const transportCost = parseFloat(pet.basePrice) * parseFloat(logistics.delivery_rate);
       const itemTotal = (parseFloat(pet.basePrice) + transportCost) * item.quantity;
       
@@ -93,7 +118,7 @@ export const createOrder = async (req, res) => {
       orderItems.push({
         petId: item.petId,
         quantity: item.quantity,
-        speciesBaseCost: pet.basePrice,
+        speciesBaseCost: parseFloat(pet.basePrice),
         transportCostApplied: transportCost,
         finalItemCost: itemTotal
       });
@@ -104,7 +129,7 @@ export const createOrder = async (req, res) => {
     estimatedDelivery.setDate(estimatedDelivery.getDate() + 5);
 
     // Create order
-    const order = await db.Orders.create({
+    const order = await getDb().Orders.create({
       customerId,
       logisticsId,
       orderDate: new Date(),
@@ -116,12 +141,12 @@ export const createOrder = async (req, res) => {
 
     // Create order items and update stock
     for (const item of orderItems) {
-      await db.Order_Pets.create({
+      await getDb().Order_Pets.create({
         orderId: order.orderId,
         ...item
       });
       
-      const pet = await db.Pets.findByPk(item.petId);
+      const pet = await getDb().Pets.findByPk(item.petId);
       await pet.update({
         stockQty: pet.stockQty - item.quantity
       });
@@ -134,10 +159,10 @@ export const createOrder = async (req, res) => {
 };
 
 // Update order status
-export const updateOrderStatus = async (req, res) => {
+export const updateOrderStatus = async (req: Request, res: Response) => {
   try {
     const { status } = req.body;
-    const order = await db.Orders.findByPk(req.params.id);
+    const order = await getDb().Orders.findByPk(req.params.id);
     
     if (!order) {
       return res.status(404).json({ message: 'Order not found' });
@@ -151,9 +176,9 @@ export const updateOrderStatus = async (req, res) => {
 };
 
 // Delete order
-export const deleteOrder = async (req, res) => {
+export const deleteOrder = async (req: Request, res: Response) => {
   try {
-    const order = await db.Orders.findByPk(req.params.id);
+    const order = await getDb().Orders.findByPk(req.params.id);
     
     if (!order) {
       return res.status(404).json({ message: 'Order not found' });

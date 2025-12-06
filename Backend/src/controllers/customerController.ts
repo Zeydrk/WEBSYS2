@@ -1,10 +1,10 @@
 import { Request, Response } from 'express';
-const db = require('../../models');
+const getDb = () => require('../../models');
 
 // Get all customers
-export const getAllCustomers = async (req, res) => {
+export const getAllCustomers = async (req: Request, res: Response) => {
   try {
-    const customers = await db.Customer.findAll();
+    const customers = await getDb().Customer.findAll();
     res.json(customers);
   } catch (error) {
     res.status(500).json({ message: 'Error getting customers', error });
@@ -12,9 +12,9 @@ export const getAllCustomers = async (req, res) => {
 };
 
 // Get one customer by ID
-export const getCustomerById = async (req, res) => {
+export const getCustomerById = async (req: Request, res: Response) => {
   try {
-    const customer = await db.Customer.findByPk(req.params.id);
+    const customer = await getDb().Customer.findByPk(req.params.id);
     if (!customer) {
       return res.status(404).json({ message: 'Customer not found' });
     }
@@ -25,10 +25,10 @@ export const getCustomerById = async (req, res) => {
 };
 
 // Create new customer
-export const createCustomer = async (req, res) => {
+export const createCustomer = async (req: Request, res: Response) => {
   try {
     const { name, email, contactNo } = req.body;
-    const customer = await db.Customer.create({
+    const customer = await getDb().Customer.create({
       name,
       email,
       contactNo
@@ -40,10 +40,10 @@ export const createCustomer = async (req, res) => {
 };
 
 // Update customer
-export const updateCustomer = async (req, res) => {
+export const updateCustomer = async (req: Request, res: Response) => {
   try {
     const { name, email, contactNo } = req.body;
-    const customer = await db.Customer.findByPk(req.params.id);
+    const customer = await getDb().Customer.findByPk(req.params.id);
     
     if (!customer) {
       return res.status(404).json({ message: 'Customer not found' });
@@ -57,9 +57,9 @@ export const updateCustomer = async (req, res) => {
 };
 
 // Delete customer
-export const deleteCustomer = async (req, res) => {
+export const deleteCustomer = async (req: Request, res: Response) => {
   try {
-    const customer = await db.Customer.findByPk(req.params.id);
+    const customer = await getDb().Customer.findByPk(req.params.id);
     
     if (!customer) {
       return res.status(404).json({ message: 'Customer not found' });

@@ -1,11 +1,11 @@
 {
   "development": {
-    "username": "postgres.rtblqtubfmwitvhqabar",
-    "password": "ThisisourDB_1",
+    "username": "postgres.eslceqdpqrasmengdyxc",
+    "password": "ymXiGVpPRRyr08r2",
     "database": "postgres",
-    "host": "aws-1-ap-southeast-1.pooler.supabase.com:5432",
+    "host": "aws-1-ap-southeast-1.pooler.supabase.com",
     "dialect": "postgres",
-    "port": 5342
+    "port": 5432
   },
   "test": {
     "username": "root",

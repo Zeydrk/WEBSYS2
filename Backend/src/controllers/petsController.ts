@@ -1,12 +1,12 @@
 import { Request, Response } from 'express';
-const db = require('../../models');
+const getDb = () => require('../../models');
 
 // Get all pets with their planet info
-export const getAllPets = async (req, res) => {
+export const getAllPets = async (req: Request, res: Response) => {
   try {
-    const pets = await db.Pets.findAll({
+    const pets = await getDb().Pets.findAll({
       include: [{
-        model: db.Planets,
+        model: getDb().Planets,
         as: 'originPlanet'
       }]
     });
@@ -17,11 +17,11 @@ export const getAllPets = async (req, res) => {
 };
 
 // Get one pet by ID
-export const getPetById = async (req, res) => {
+export const getPetById = async (req: Request, res: Response) => {
   try {
-    const pet = await db.Pets.findByPk(req.params.id, {
+    const pet = await getDb().Pets.findByPk(req.params.id, {
       include: [{
-        model: db.Planets,
+        model: getDb().Planets,
         as: 'originPlanet'
       }]
     });
@@ -37,11 +37,11 @@ export const getPetById = async (req, res) => {
 };
 
 // Create new pet
-export const createPet = async (req, res) => {
+export const createPet = async (req: Request, res: Response) => {
   try {
     const { planetId, name, species, description, basePrice, stockQty } = req.body;
     
-    const pet = await db.Pets.create({
+    const pet = await getDb().Pets.create({
       planetId,
       name,
       species,
@@ -57,10 +57,10 @@ export const createPet = async (req, res) => {
 };
 
 // Update pet
-export const updatePet = async (req, res) => {
+export const updatePet = async (req: Request, res: Response) => {
   try {
     const { planetId, name, species, description, basePrice, stockQty } = req.body;
-    const pet = await db.Pets.findByPk(req.params.id);
+    const pet = await getDb().Pets.findByPk(req.params.id);
     
     if (!pet) {
       return res.status(404).json({ message: 'Pet not found' });
@@ -82,9 +82,9 @@ export const updatePet = async (req, res) => {
 };
 
 // Delete pet
-export const deletePet = async (req, res) => {
+export const deletePet = async (req: Request, res: Response) => {
   try {
-    const pet = await db.Pets.findByPk(req.params.id);
+    const pet = await getDb().Pets.findByPk(req.params.id);
     
     if (!pet) {
       return res.status(404).json({ message: 'Pet not found' });
@@ -98,10 +98,10 @@ export const deletePet = async (req, res) => {
 };
 
 // Update stock quantity
-export const updateStock = async (req, res) => {
+export const updateStock = async (req: Request, res: Response) => {
   try {
     const { quantity } = req.body;
-    const pet = await db.Pets.findByPk(req.params.id);
+    const pet = await getDb().Pets.findByPk(req.params.id);
     
     if (!pet) {
       return res.status(404).json({ message: 'Pet not found' });
