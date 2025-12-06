@@ -2,11 +2,34 @@
 // import React from 'react';
 // import ReactDOM from 'react-dom/client';
 
+import {useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+
+// hooks
+import useProduct from "../hooks/useProduct";
+
+
 // import needed components and assets
 import image from "../imgs/shop-banner-1.jpg";
 import { Link } from "react-router-dom";
 
 export default function Products() {
+  const petServices = useProduct();
+  
+  
+  petServices.fetchPets()
+  .then(res =>{
+    console.log(res);
+    console.log("Fetched pets successfully");
+  })
+  .catch(err =>{
+    console.error("Error fetching pets:", err);
+  })
+
+  const handleOnClick = () => {
+    console.log(petServices.product)
+  }
+
   return (
     // Added text-gray-100 to ensure text is readable on the dark gradient by default
     <div className="min-h-screen bg-linear-to-b from-slate-900 via-purple-900 to-slate-900 text-gray-100 font-sans">
@@ -109,7 +132,7 @@ export default function Products() {
             </div>
           </div>
 
-          {/* ---------------- Product Grid ---------------- */}
+          {/* Product Grid */}
           <div className="w-full">
           
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
@@ -121,7 +144,7 @@ export default function Products() {
                     <img src={image} alt="Pet" className="group-hover:scale-110 transition-transform duration-500" />
                   </figure>
                   <div className="card-body">
-                    <div className="badge badge-secondary badge-outline mb-2">Planet Name</div>
+                    <div className="badge badge-secondary badge-outline mb-2"></div>
                     <h2 className="card-title text-2xl text-white">Pet 1</h2>
                     <p className="text-gray-200">Rare space creature with unique abilities.</p>
                     <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
