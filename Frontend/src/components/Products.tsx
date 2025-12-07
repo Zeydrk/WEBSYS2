@@ -190,12 +190,13 @@ export default function Products() {
                     </figure>
                     <div className="card-body">
                       <div className="badge badge-secondary badge-outline mb-2">
+                        {pet.originPlanet.planetName}
                       </div>
                       <h2 className="card-title text-2xl text-white">
                         {pet.name}
                       </h2>
                       <p className="text-gray-200">
-                        Rare space creature with unique abilities.
+                        {pet.description}
                       </p>
                       <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
                         <div className="flex flex-col">
@@ -203,7 +204,7 @@ export default function Products() {
                             Price
                           </span>
                           <span className="text-xl font-bold text-primary-content">
-                            450.00 GC
+                            {pet.basePrice} GC
                           </span>
                         </div>
                         <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
