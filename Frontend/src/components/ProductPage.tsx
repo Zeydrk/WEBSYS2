@@ -1,3 +1,5 @@
+// NOTE: use useParams() to get product ID from URL if needed
+
 // import all components
 
 import sampleImage from "../imgs/shop-banner-1.jpg";
