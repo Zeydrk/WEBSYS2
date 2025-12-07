@@ -10,7 +10,7 @@ export default function useProduct(){
     const API_URL = "http://localhost:4200"
     
     async function fetchPets(){
-        const response = await axios.get(`${API_URL}/pets`);
+        const response = await axios.get(`${API_URL}/api/pets`);
         setProduct(response.data);
         return response.data
     }
