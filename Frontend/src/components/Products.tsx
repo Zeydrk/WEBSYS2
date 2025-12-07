@@ -17,10 +17,18 @@ import { Link } from "react-router-dom";
 interface Pet {
   petId: string;
   name: string;
+  species: string;
   description: string;
-  planet: string;
-  price: number;
+  basePrice: number;
+  stockQty: number;
   imageUrl: string;
+  planetId: string;
+  originPlanet: {
+    planetId: string;
+    planetName: string;
+    distanceFromSun:  number;
+  }
+
 }
 
 export default function Products() {
@@ -182,7 +190,6 @@ export default function Products() {
                     </figure>
                     <div className="card-body">
                       <div className="badge badge-secondary badge-outline mb-2">
-                        planet Name
                       </div>
                       <h2 className="card-title text-2xl text-white">
                         {pet.name}
