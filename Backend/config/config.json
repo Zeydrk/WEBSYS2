@@ -8,11 +8,12 @@
     "port": 5432
   },
   "test": {
-    "username": "root",
-    "password": null,
-    "database": "database_test",
-    "host": "127.0.0.1",
-    "dialect": "mysql"
+    "username": "postgres.eslceqdpqrasmengdyxc",
+    "password": "ymXiGVpPRRyr08r2",
+    "database": "postgres",
+    "host": "aws-1-ap-southeast-1.pooler.supabase.com",
+    "dialect": "postgres",
+    "port": 5432
   },
   "production": {
     "username": "postgres.eslceqdpqrasmengdyxc",
