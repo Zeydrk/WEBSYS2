@@ -25,4 +25,4 @@ app.use('/api', router);
 //   console.log(`Server running at http://localhost:${PORT}`);
 // });
 
-module.exports = app; // Export the app for testing purposes
+export default app;
