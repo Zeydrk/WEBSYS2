@@ -4,8 +4,10 @@
     "module": "commonjs",
     "strict": false,
     "esModuleInterop": true,
+    "rootDir": "./src",
     "outDir": "./dist"
+    
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "src/index.ts"],
   "exclude": ["node_modules"]
 }
