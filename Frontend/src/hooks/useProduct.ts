@@ -18,9 +18,9 @@ export default function useProduct(){
     }
 
     async function fetchPetsById(id:string){
-        const response = await axios.get(`${API_URL}/pets/${id}`);
+        const response = await axios.get(`${API_URL}/api/pets/${id}`);
         setProduct(response.data);
-        return response
+        return response.data
     }
 
     return{

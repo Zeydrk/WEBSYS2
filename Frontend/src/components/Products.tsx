@@ -35,12 +35,18 @@ export default function Products() {
   const petServices = useProduct();
   const [pets, setPets] = useState([]);
 
+  async function handleOnClick(e: React.MouseEvent<HTMLButtonElement>) {
+    e.preventDefault()
+    
+  }
+
   useEffect(() => {
     petServices
       .fetchPets()
       .then((res) => {
-        console.log(res);
+        // console.log(res);
         setPets(res);
+        // console.log(pets);
       })
       .catch((err) => {
         console.error("Error fetching pets:", err);
