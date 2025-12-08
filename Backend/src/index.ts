@@ -5,7 +5,7 @@ import router from './routes/routes';
 const app = express();
 const PORT = process.env.PORT || 4200;
 // change cors credebility with this variable
-const HOST = process.env.HOST || "https://localhost:5173";
+const HOST = process.env.HOST;
 // Enable CORS for frontend connection
 app.use(cors({
   origin: HOST, // React default port
