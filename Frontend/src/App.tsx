@@ -1,6 +1,8 @@
 // styles and libraries
 import './App.css';
 
+// updateters
+
 // components
 import Navbar from './components/Navbar';
 import Products from './components/Products';
