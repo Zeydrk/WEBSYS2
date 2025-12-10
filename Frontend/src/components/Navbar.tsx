@@ -120,7 +120,9 @@ const customerNav = () => {
             </Link>
           </li>
           <li>
-            <button>Contact Us</button>
+            <Link to="/contact">
+              <button>Contact Us</button>
+            </Link>
           </li>
           <li>
             <Link to="/cart">
@@ -176,7 +178,9 @@ export default function Navbar() {
             </Link>
           </li>
           <li>
-            <button>Contact Us</button>
+            <Link to="/contact">
+              <button>Contact Us</button>
+            </Link>
           </li>
           <li>
             <Link to="/cart">
@@ -193,7 +197,9 @@ export default function Navbar() {
                 className="dropdown-content menu bg-base-100 rounded-box z-1 w-25 p-2 shadow-sm left-1/2 -translate-x-1/2 "
               >
                 <li>
-                  <button> Profile</button>
+                  <Link to="/profile">
+                    <button> Profile</button>
+                  </Link>
                 </li>
                 <li>
                   <button> Logout </button>
