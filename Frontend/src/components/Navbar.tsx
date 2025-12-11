@@ -150,6 +150,14 @@ const customerNav = () => {
         </ul>
       </div>
     </nav>
+
+    // for ts
+    const user:String = ''
+    if(user == "cus"){
+      defaultNav
+      customerNav
+      sellerNav
+    }
 }
 
 
