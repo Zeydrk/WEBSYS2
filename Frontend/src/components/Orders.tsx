@@ -19,6 +19,23 @@ interface Order {
     }[];
 }
 
+// interface orderSpecies {
+//     orderSpeciesId: string;
+//     orderId: {
+//         customerId: string
+//         logisticsId: {
+//             name: string
+
+//         }
+
+//     }
+//     petId: string
+//     quantity: number
+//     specieBaseCost : number
+//     transportCostApplied: number
+//     finalItemCost: number
+// }
+
 // Mock Order Data to display in the tabs
 const mockOrders: Order[] = [
     {
