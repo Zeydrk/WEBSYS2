@@ -61,6 +61,7 @@ export default function Cart() {
 
   return (
     <div className="min-h-screen bg-linear-to-b from-slate-900 via-purple-900 to-slate-900 py-12">
+      
       <div className="container mx-auto px-4">
         
         {/* Main Grid */}

@@ -7,6 +7,7 @@ import useProduct from "../hooks/useProduct";
 
 // import needed components and assets
 import image from "../imgs/shop-banner-1.jpg";
+import bannerImg from "../imgs/banner 4.png";
 
 interface Pet {
   petId: string;
@@ -103,7 +104,7 @@ export default function Products() {
         className="hero min-h-[60vh] lg:min-h-[70vh]"
         style={{
           backgroundImage:
-            "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
+            `url(${bannerImg})`,
           backgroundAttachment: "fixed",
         }}
       >
