@@ -1,11 +1,9 @@
-const { v4: uuidv4 } = require('uuid');
 const ids = require('./ids');
 
 module.exports = [
   {
-    accountId: uuidv4(),
-    customerId: ids.CUSTOMER_ZAPP,
-    email: 'zapp.the.great@doop.com',
+    accountId: ids.ACCOUNT_ZAPP,
+    email: "zapp.the.great@doop.com",
     passwordHash: '$2b$10$abcdefghijklmnopqrstuv',
     role: 'admin',
     lastLogin: new Date(),
@@ -13,8 +11,7 @@ module.exports = [
     updatedAt: new Date(),
   },
   {
-    accountId: uuidv4(),
-    customerId: ids.CUSTOMER_LEIA,
+    accountId: ids.ACCOUNT_LEIA,
     email: 'leia.organa@rebel.org',
     passwordHash: '$2b$10$1234567890abcdefghijk',
     role: 'user',
@@ -23,8 +20,7 @@ module.exports = [
     updatedAt: new Date(),
   },
   {
-    accountId: uuidv4(),
-    customerId: ids.CUSTOMER_WHO,
+    accountId: ids.ACCOUNT_WHO,
     email: 'thedoctor@tardis.net',
     passwordHash: '$2b$10$timeandspace123456789',
     role: 'user',
@@ -33,8 +29,7 @@ module.exports = [
     updatedAt: new Date(),
   },
   {
-    accountId: uuidv4(),
-    customerId: ids.CUSTOMER_RICK,
+    accountId: ids.ACCOUNT_RICK,
     email: 'c137@citadel.com',
     passwordHash: '$2b$10$wubbalubbadubdub12345',
     role: 'user',
@@ -43,8 +38,7 @@ module.exports = [
     updatedAt: new Date(),
   },
   {
-    accountId: uuidv4(),
-    customerId: ids.CUSTOMER_GROOT,
+    accountId: ids.ACCOUNT_GROOT,
     email: 'iam.groot@guardians.com',
     passwordHash: '$2b$10$iamgrootiamgrootiamgr',
     role: 'user',
@@ -53,9 +47,8 @@ module.exports = [
     updatedAt: new Date(),
   },
   {
-    accountId: uuidv4(),
-    customerId: ids.CUSTOMER_ELLEN,
-    email: 'nripley.e@weyland.com',
+    accountId: ids.ACCOUNT_ELLEN,
+    email: 'ripley.e@weyland.com',
     passwordHash: '$2b$10$xenomorph123456789012',
     role: 'user',
     lastLogin: new Date(),
@@ -63,8 +56,7 @@ module.exports = [
     updatedAt: new Date(),
   },
   {
-    accountId: uuidv4(),
-    customerId: ids.CUSTOMER_SPOCK,
+    accountId: ids.ACCOUNT_SPOCK,
     email: 's.spock@starfleet.org',
     passwordHash: '$2b$10$logicdictates12345678',
     role: 'admin',

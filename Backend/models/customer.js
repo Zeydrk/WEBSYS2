@@ -5,11 +5,18 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Customer extends Model {
     static associate(models) {
-      // A Customer has many Orders
       Customer.hasMany(models.Orders, {
         foreignKey: 'customerId',
         as: 'orders'
       });
+      Customer.belongsTo(models.Planet, {
+          foreignKey: 'planetId',
+          as: 'planet'
+        });
+      Customer.belongsTo(models.Account, {
+        foreignKey: 'accountId',
+        as: 'account'
+      });      
     }
   }
   Customer.init({
@@ -18,9 +25,23 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    name: DataTypes.STRING,
-    email: DataTypes.STRING,
-    contactNo: DataTypes.STRING
+    accountId: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    name: {
+      type: DataTypes.STRING,
+      allowNull: false 
+    },
+    email: {
+      type: DataTypes.STRING,
+      allowNull: false, 
+      validate: { isEmail: true } 
+    },
+    contactNo: {
+      type: DataTypes.STRING,
+      allowNull: false 
+    }
   }, {
     sequelize,
     modelName: 'Customer',

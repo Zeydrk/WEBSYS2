@@ -8,17 +8,15 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      
-      petId: {
+      accountId: {
         type: Sequelize.UUID,
         allowNull: false,
         references: {
-          model: 'Pets',
-          key: 'petId',
+          model: 'Accounts', 
+          key: 'accountId', 
         },
         onUpdate: 'CASCADE',
-        onDelete: 'RESTRICT',
-        unique: true
+        onDelete: 'RESTRICT'
       },
       name: {
         type: Sequelize.STRING,
