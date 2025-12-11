@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import sampleAvatar from "../imgs/shop-banner-1.jpg"; // Replace with your default avatar path or keep null
+// import sampleAvatar from "../imgs/shop-banner-1.jpg"; // Replace with your default avatar path or keep null
 
 export default function Profile() {
   // Mock User State
