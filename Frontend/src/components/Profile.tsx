@@ -36,10 +36,10 @@ interface ProfileFormProps {
   setUser: React.Dispatch<React.SetStateAction<User>>;
 }
 
-interface AddressFormProps {
-  address: Address;
-  setAddress: React.Dispatch<React.SetStateAction<Address>>;
-}
+// interface AddressFormProps {
+//   address: Address;
+//   setAddress: React.Dispatch<React.SetStateAction<Address>>;
+// }
 
 // ----------------------------------------------------------------------
 // 2. MAIN COMPONENT (Profile)
