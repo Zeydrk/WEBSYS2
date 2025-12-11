@@ -62,17 +62,17 @@ export default function Profile() {
   });
 
   // Mock Single Address State (Type: Address)
-  const [address, setAddress] = useState<Address>({
-    fullName: "Luke Skywalker",
-    phone: "(+63) 912 345 6789",
-    region: "Outer Rim Territories",
-    province: "Tatooine",
-    city: "Mos Eisley",
-    barangay: "Cantina District",
-    postalCode: "1138",
-    street: "Hut 4, Lars Homestead",
-    label: "Home"
-  });
+//   const [address, setAddress] = useState<Address>({
+//     fullName: "Luke Skywalker",
+//     phone: "(+63) 912 345 6789",
+//     region: "Outer Rim Territories",
+//     province: "Tatooine",
+//     city: "Mos Eisley",
+//     barangay: "Cantina District",
+//     postalCode: "1138",
+//     street: "Hut 4, Lars Homestead",
+//     label: "Home"
+//   });
 
   // Helper to render content based on activeTab
   const renderContent = () => {
