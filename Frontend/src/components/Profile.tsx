@@ -18,17 +18,7 @@ interface User {
 }
 
 // Define the shape of the single Address object
-interface Address {
-  fullName: string;
-  phone: string;
-  region: string;
-  province: string;
-  city: string;
-  barangay: string;
-  postalCode: string;
-  street: string;
-  label: 'Home' | 'Work' | string;
-}
+
 
 // Define props for the sub-components
 interface ProfileFormProps {
