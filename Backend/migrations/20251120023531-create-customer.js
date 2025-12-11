@@ -18,6 +18,16 @@ module.exports = {
         onUpdate: 'CASCADE',
         onDelete: 'RESTRICT'
       },
+      accountId: {
+        type: Sequelize.UUID,
+        allowNull: false,
+        references: {
+          model: 'Accounts', 
+          key: 'accountId', 
+        },
+        onUpdate: 'CASCADE',
+        onDelete: 'RESTRICT'
+      },
       name: {
         type: Sequelize.STRING,
         allowNull: false
