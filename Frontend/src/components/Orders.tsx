@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom'; // 1. Added import for Link
 
-// 1. Define a type for the possible order statuses (tabs)
+// Define a type for the possible order statuses (tabs)
 type OrderStatus = 'onShipping' | 'arrived' | 'cancelled';
 
-// 2. Mock Data Structure (for rendering content)
+// Mock Data Structure (for rendering content)
 interface Order {
     id: string;
     status: OrderStatus;
@@ -18,23 +19,6 @@ interface Order {
         imgSrc: string;
     }[];
 }
-
-// interface orderSpecies {
-//     orderSpeciesId: string;
-//     orderId: {
-//         customerId: string
-//         logisticsId: {
-//             name: string
-
-//         }
-
-//     }
-//     petId: string
-//     quantity: number
-//     specieBaseCost : number
-//     transportCostApplied: number
-//     finalItemCost: number
-// }
 
 // Mock Order Data to display in the tabs
 const mockOrders: Order[] = [
@@ -63,7 +47,7 @@ const mockOrders: Order[] = [
             name: 'Cosmic Ray Gun',
             price: 60.00,
             quantity: 2,
-            imgSrc: 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp', // Using same placeholder
+            imgSrc: 'https://img.daisyui.com/images/stock/photo-1534528741775-53994a69daeb.webp', 
         }],
     },
     {
@@ -116,17 +100,14 @@ const getStatusDetails = (status: OrderStatus) => {
 };
 
 export default function Orders() {
-    // 3. Use state to manage the active tab. Initialize it to 'onShipping'.
     const [activeTab, setActiveTab] = useState<OrderStatus>('onShipping');
 
-    // 4. Filter orders based on the active tab state
     const filteredOrders = mockOrders.filter(order => order.status === activeTab);
 
     // Component for a single Order Card (for reusability)
     const OrderCard: React.FC<{ order: Order }> = ({ order }) => {
         const { icon, text, bg, shadow } = getStatusDetails(order.status);
         
-        // This is a basic example; you should calculate item totals for real data
         const firstItem = order.items[0]; 
 
         return (
@@ -195,6 +176,14 @@ export default function Orders() {
             <div className="min-h-screen bg-linear-to-b from-slate-900 via-purple-900 to-slate-900 text-gray-100 font-sans p-4">
                 <div className="container mx-auto py-8">
                     
+                    {/* 2. INSERTED BREADCRUMBS HERE */}
+                    <div className="breadcrumbs text-sm ml-2 mb-6 text-purple-300 max-w-7xl mx-auto">
+                        <ul>
+                            <li className="hover:text-white transition-colors"><Link to="/">Home</Link></li>
+                            <li className="font-semibold text-white">Orders</li>
+                        </ul>
+                    </div>
+
                     {/* heading */}
                     <div className="mb-8">
                         <h1 className="text-4xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-purple-300 to-white drop-shadow-md">
@@ -205,7 +194,6 @@ export default function Orders() {
                     {/* div for order statuses (Tabs) */}
                     <div className="tabs tabs-boxed bg-slate-800/50 backdrop-blur-sm p-1 rounded-xl shadow-lg border border-purple-500/20 mb-8 overflow-x-auto">
                         
-                        {/* 5. On Shipping Tab - Use onClick and conditional class */}
                         <a 
                             className={`tab tab-lg text-slate-300 font-semibold hover:bg-purple-800/30 ${activeTab === 'onShipping' ? 'tab-active bg-purple-700 text-white' : ''}`}
                             onClick={() => setActiveTab('onShipping')}
@@ -213,7 +201,6 @@ export default function Orders() {
                             On Shipping ({getOrderCount('onShipping')})
                         </a>
 
-                        {/* 5. Arrived Orders Tab - Use onClick and conditional class */}
                         <a 
                             className={`tab tab-lg text-slate-300 font-semibold hover:bg-purple-800/30 ${activeTab === 'arrived' ? 'tab-active bg-purple-700 text-white' : ''}`}
                             onClick={() => setActiveTab('arrived')}
@@ -221,7 +208,6 @@ export default function Orders() {
                             Arrived ({getOrderCount('arrived')})
                         </a>
 
-                        {/* 5. Cancelled Status Tab - Use onClick and conditional class */}
                         <a 
                             className={`tab tab-lg text-slate-300 font-semibold hover:bg-purple-800/30 ${activeTab === 'cancelled' ? 'tab-active bg-purple-700 text-white' : ''}`}
                             onClick={() => setActiveTab('cancelled')}
@@ -230,7 +216,7 @@ export default function Orders() {
                         </a>
                     </div>
 
-                    {/* 6. Conditionally rendered content */}
+                    {/* Conditionally rendered content */}
                     <div className="space-y-6">
                         {filteredOrders.length > 0 ? (
                             filteredOrders.map(order => (

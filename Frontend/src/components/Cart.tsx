@@ -1,6 +1,6 @@
 // insert needed imports
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom"; // 1. Added Link import
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([
@@ -63,6 +63,14 @@ export default function Cart() {
     <div className="min-h-screen bg-linear-to-b from-slate-900 via-purple-900 to-slate-900 py-12">
       
       <div className="container mx-auto px-4">
+
+        {/* 2. INSERTED BREADCRUMBS HERE */}
+        <div className="breadcrumbs text-sm mb-6 text-purple-300">
+            <ul>
+                <li className="hover:text-white transition-colors"><Link to="/">Home</Link></li>
+                <li className="font-semibold text-white">Cart</li>
+            </ul>
+        </div>
         
         {/* Main Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">

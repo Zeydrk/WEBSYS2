@@ -1,4 +1,4 @@
-export default function Register() {
+export default function Register () {
   return (
     <>
       {/* Main Div - Full Screen Background */}
@@ -110,7 +110,7 @@ export default function Register() {
             <div className="text-center mt-6">
               <p className="text-sm text-gray-400">
                 Already have an ID?{" "}
-                <a href="#" className="link link-hover text-purple-400 font-bold hover:text-purple-300 transition-colors">
+                <a href="/login" className="link link-hover text-purple-400 font-bold hover:text-purple-300 transition-colors">
                   Login here
                 </a>
               </p>
