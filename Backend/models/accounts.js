@@ -4,11 +4,12 @@ const { Model } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Account extends Model {
     static associate(models) {
-      // An Account belongs to one Customer
-      Account.belongsTo(models.Customer, {
-        foreignKey: 'customerId',
-        as: 'customer'
-      });
+  Account.hasOne(models.Customer, { 
+    foreignKey: 'accountId' 
+  });
+  Account.hasOne(models.Species_Manager, { 
+    foreignKey: 'accountId' 
+  });
     }
   }
 
@@ -18,12 +19,7 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
-    customerId: {
-      type: DataTypes.UUID,
-      allowNull: false,
-      unique: true
-    },
-    username: {
+    email: {
       type: DataTypes.STRING,
       allowNull: false,
       unique: true,

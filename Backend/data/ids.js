@@ -29,6 +29,15 @@ module.exports = {
   CUSTOMER_ELLEN: '55f66a77-8b9c-0d1e-2f3a-4b5c6d7e8f9a',
   CUSTOMER_SPOCK: '66a77b88-9c0d-1e2f-3a4b-5c6d7e8f9a0b',
 
+  // ACCOUNTS 
+  ACCOUNT_ZAPP:  '1d7a316d-3f59-4252-8753-834b9987c6f1',
+  ACCOUNT_LEIA:  '9b3c4d5e-6f7a-4829-91c2-3d4e5f6a7b8c',
+  ACCOUNT_WHO:   'a1b2c3d4-e5f6-4789-a0b1-c2d3e4f5a6b7',
+  ACCOUNT_RICK:  'f8e7d6c5-b4a3-4921-81d2-e3f4a5b6c7d8',
+  ACCOUNT_GROOT: '5a6b7c8d-9e0f-4123-8456-789abcdef012',
+  ACCOUNT_ELLEN: 'c3d4e5f6-a7b8-4901-8234-567890abcdef',
+  ACCOUNT_SPOCK: 'e1f2a3b4-c5d6-4789-8012-34567890abcd',
+
   // PETS
   PET_TIMMY:      '98d30e5f-d23e-4519-8656-7c6f0e95c47f',
   PET_FLUFFY:     'a3d2c1e0-c9a8-4b7d-8f6e-5d4c3b2a10f9',
@@ -41,7 +50,7 @@ module.exports = {
   PET_TOOTHLESS:  'b0a9c8d7-4e5f-7a8b-9c0d-1e2f3a4b5c6d',
   PET_AUDREY:     'c1b0d9e8-5f6a-8b9c-0d1e-2f3a4b5c6d7e',
 
-  // ORDERS (Updated to valid UUIDs)
+  // ORDERS
   ORDER_1: '0d1e2f3a-4b5c-6d7e-8f9a-0b1c2d3e4f5a',
   ORDER_2: '1a2b3c4d-5e6f-7a8b-9c0d-1e2f3a4b5c6d',
 

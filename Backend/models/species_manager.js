@@ -5,10 +5,9 @@ const {
 module.exports = (sequelize, DataTypes) => {
   class Species_Manager extends Model {
     static associate(models) {
-      // A Species Manager belongs to one Pet species
-      Species_Manager.belongsTo(models.Pets, {
-        foreignKey: 'petId',
-        as: 'managedSpecies'
+    Species_Manager.belongsTo(models.Account, { 
+        foreignKey: 'accountId',
+        as: 'account'
       });
     }
   }
@@ -18,9 +17,11 @@ module.exports = (sequelize, DataTypes) => {
       primaryKey: true,
       defaultValue: DataTypes.UUIDV4
     },
-    petId: DataTypes.UUID,
+    accountId: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
     name: DataTypes.STRING,
-    role: DataTypes.STRING,
     email: DataTypes.STRING
   }, {
     sequelize,

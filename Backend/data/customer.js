@@ -3,6 +3,7 @@ const ids = require('./ids');
 module.exports = [
   {
     customerId: ids.CUSTOMER_ZAPP,
+    accountId: ids.ACCOUNT_ZAPP,
     name: "Zapp Brannigan",
     email: "zapp.the.great@doop.com",
     planetId: ids.PLANET_JUPITER,
@@ -12,6 +13,7 @@ module.exports = [
   },
   {
     customerId: ids.CUSTOMER_LEIA,
+    accountId: ids.ACCOUNT_LEIA,
     name: "Princess Leia Organa",
     email: "leia.organa@rebel.org",
     planetId: ids.PLANET_MARS, 
@@ -21,6 +23,7 @@ module.exports = [
   },
   {
     customerId: ids.CUSTOMER_WHO,
+    accountId: ids.ACCOUNT_WHO,
     name: "Doctor Who",
     email: "thedoctor@tardis.net",
     planetId: ids.PLANET_EARTH, 
@@ -30,6 +33,7 @@ module.exports = [
   },
   {
     customerId: ids.CUSTOMER_RICK,
+    accountId: ids.ACCOUNT_RICK,
     name: "Rick Sanchez",
     email: "c137@citadel.com",
     planetId: ids.PLANET_EARTH, 
@@ -39,6 +43,7 @@ module.exports = [
   },
   {
     customerId: ids.CUSTOMER_GROOT,
+    accountId: ids.ACCOUNT_GROOT,
     name: "Groot",
     email: "iam.groot@guardians.com",
     planetId: ids.PLANET_MARS, 
@@ -48,6 +53,7 @@ module.exports = [
   },
   {
     customerId: ids.CUSTOMER_ELLEN,
+    accountId: ids.ACCOUNT_ELLEN,
     name: "Ellen Ripley",
     email: "ripley.e@weyland.com",
     planetId: ids.PLANET_MERCURY, 
@@ -55,13 +61,4 @@ module.exports = [
     createdAt: new Date(),
     updatedAt: new Date(),
   },
-  {
-    customerId: ids.CUSTOMER_SPOCK,
-    name: "Spock",
-    email: "s.spock@starfleet.org",
-    planetId: ids.PLANET_VENUS, 
-    contactNo: "400-555-0107",
-    createdAt: new Date(),
-    updatedAt: new Date(),
-  }
 ];

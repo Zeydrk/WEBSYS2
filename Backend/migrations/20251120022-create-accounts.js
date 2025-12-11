@@ -8,18 +8,7 @@ module.exports = {
         type: Sequelize.UUID,
         defaultValue: Sequelize.UUIDV4
       },
-      customerId: {
-        type: Sequelize.UUID,
-        allowNull: false,
-        unique: true,
-        references: {
-          model: 'Customers',
-          key: 'customerId'
-        },
-        onUpdate: 'CASCADE',
-        onDelete: 'CASCADE'
-      },
-      username: {
+      email: {
         type: Sequelize.STRING,
         allowNull: false,
         unique: true
