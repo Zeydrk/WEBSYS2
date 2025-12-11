@@ -3,21 +3,21 @@ import { useState } from 'react';
 import axios from 'axios';
 
 
-interface Pet {
-  petId: string;
-  name: string;
-  species: string;
-  description: string;
-  basePrice: number;
-  stockQty: number;
-  imageUrl: string;
-  planetId: string;
-  originPlanet: {
-    planetId: string;
-    planetName: string;
-    distanceFromSun: number;
-  };
-}
+// interface Pet {
+//   petId: string;
+//   name: string;
+//   species: string;
+//   description: string;
+//   basePrice: number;
+//   stockQty: number;
+//   imageUrl: string;
+//   planetId: string;
+//   originPlanet: {
+//     planetId: string;
+//     planetName: string;
+//     distanceFromSun: number;
+//   };
+// }
 
 // main
 export default function useProduct(){
