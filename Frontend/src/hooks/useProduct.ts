@@ -38,10 +38,10 @@ export default function useProduct(){
         return response.data
     }
 
-    async function createPets(pet:Pet){
-        const response = await axios.post(`${API_URL}/api/pets`)
+    // async function createPets(pet:Pet){
+    //     const response = await axios.post(`${API_URL}/api/pets`)
 
-    }
+    // }
 
     return{
         product,
