@@ -113,3 +113,30 @@ export const updateStock = async (req: Request, res: Response) => {
     res.status(500).json({ message: 'Error updating stock', error });
   }
 };
+
+// Upload pet image - stores file locally and returns the file path
+export const uploadPetImage = async (req: Request, res: Response) => {
+  try {
+    const pet = await getDb().Pets.findByPk(req.params.id);
+
+    if (!pet) {
+      return res.status(404).json({ message: 'Pet not found' });
+    }
+
+    const file = (req as any).file;
+
+    if (!file) {
+      return res.status(400).json({ message: 'No file uploaded' });
+    }
+
+    const relativePath = `/uploads/pets/${file.filename}`;
+
+    // Model does not currently store images; return path for client use
+    res.status(201).json({
+      message: 'Image uploaded successfully',
+      path: relativePath
+    });
+  } catch (error) {
+    res.status(500).json({ message: 'Error uploading pet image', error });
+  }
+};

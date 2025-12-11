@@ -5,6 +5,11 @@ import * as planetsController from '../controllers/planetsController';
 import * as logisticsController from '../controllers/logisticsController';
 import * as ordersController from '../controllers/ordersController';
 import * as speciesManagerController from '../controllers/speciesManagerController';
+import * as accountsController from '../controllers/accountsController';
+import * as cartController from '../controllers/cartController';
+import * as authController from '../controllers/authController';
+import petImageUpload from '../middleware/upload';
+import authenticate from '../middleware/authMiddleware';
 
 const router = express.Router();
 
@@ -22,6 +27,7 @@ router.post('/pets', petsController.createPet);
 router.put('/pets/:id', petsController.updatePet);
 router.delete('/pets/:id', petsController.deletePet);
 router.patch('/pets/:id/stock', petsController.updateStock);
+router.post('/pets/:id/image', petImageUpload.single('image'), petsController.uploadPetImage);
 
 // Planets routes
 router.get('/planets', planetsController.getAllPlanets);
@@ -50,5 +56,25 @@ router.get('/managers/:id', speciesManagerController.getManagerById);
 router.post('/managers', speciesManagerController.createManager);
 router.put('/managers/:id', speciesManagerController.updateManager);
 router.delete('/managers/:id', speciesManagerController.deleteManager);
+
+// Accounts routes
+router.get('/accounts', authenticate, accountsController.getAllAccounts);
+router.get('/accounts/:id', authenticate, accountsController.getAccountById);
+router.post('/accounts', authenticate, accountsController.createAccount);
+router.put('/accounts/:id', authenticate, accountsController.updateAccount);
+router.delete('/accounts/:id', authenticate, accountsController.deleteAccount);
+
+// Cart routes
+router.get('/carts', authenticate, cartController.getAllCarts);
+router.get('/carts/:id', authenticate, cartController.getCartById);
+router.post('/carts', authenticate, cartController.createCart);
+router.post('/carts/:id/items', authenticate, cartController.addItemToCart);
+router.patch('/carts/:cartId/items/:itemId', authenticate, cartController.updateCartItemQuantity);
+router.delete('/carts/:cartId/items/:itemId', authenticate, cartController.removeItemFromCart);
+router.patch('/carts/:id/status', authenticate, cartController.updateCartStatus);
+
+// Auth routes
+router.post('/auth/login', authController.login);
+router.get('/auth/me', authenticate, authController.me);
 
 export default router;
