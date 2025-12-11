@@ -43,6 +43,32 @@ export default function useProduct(){
 
     // }
 
+    // async function updatePets(id: string, updatedData: Partial<Pet>) {
+    //     try {
+    //         // 1. Send request to server (Change .put to .patch if your API uses PATCH)
+    //         const response = await axios.put(`${API_URL}/api/pets/${id}`, updatedData);
+
+    //         // 2. Update the local state
+    //         setProducts(prev => 
+    //             prev.map(pet => 
+    //                 // If the ID matches, replace it with the new data from server
+    //                 // Otherwise, keep the pet exactly as is
+    //                 pet.id === id ? response.data : pet
+    //             )
+    //         );
+    //     } catch (error) {
+    //         console.error("Error updating pet:", error);
+    //     }
+    // }
+
+//     async function deletePets() {
+//         const response = await axios.delete(`${API_URL}/api/pets/${id}`);
+
+//         setStudents(prev => {
+//         return prev.filter(pet => pet.id !== response.data.id);
+//         });
+//   }
+
     return{
         product,
         fetchPets,

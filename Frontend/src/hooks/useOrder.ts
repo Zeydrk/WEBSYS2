@@ -7,25 +7,26 @@ import axios from 'axios';
 // main
 export default function useOrder(){
     // variables    
-    const [order, setOrder] = useState('');
+    const [order, setorder] = useState('');
     // edit when env is injected
     const API_URL = import.meta.env.VITE_API_URL;
     
-    async function fetchPets(){
-        const response = await axios.get(`${API_URL}/api/pets`);
-        setOrder(response.data);
+    async function fetchOrders(){
+        const response = await axios.get(`${API_URL}/api/order`);
+        setorder(response.data);
         return response.data
     }
 
-    async function fetchPetsById(id:string){
-        const response = await axios.get(`${API_URL}/api/pets/${id}`);
-        setOrder(response.data);
+    async function fetchOrdersById(id:string){
+        const response = await axios.get(`${API_URL}/api/order/${id}`);
+        setorder(response.data);
         return response.data
     }
+
 
     return{
         order,
-        fetchPets,
-        fetchPetsById
+        fetchOrders,
+        fetchOrdersById
     }
 }
