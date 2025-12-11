@@ -1,5 +1,6 @@
 // insert needed imports
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function Cart() {
   const [cartItems, setCartItems] = useState([
@@ -35,6 +36,8 @@ export default function Cart() {
     }
   ]);
 
+  const Navigate  = useNavigate();
+
   const updateQuantity = (id:number, newQuantity:number) => {
     if (newQuantity < 1) return;
     setCartItems(cartItems.map(item => 
@@ -46,6 +49,10 @@ export default function Cart() {
     setCartItems(cartItems.filter(item => item.id !== id));
   };
 
+  const handleContinueShopping = () => {
+    Navigate('/products');
+  }
+
   
   const subtotal = cartItems.reduce((sum, item) => sum + ((item.price + item.logisticsFee) * item.quantity), 0);
   // const shipping = 299;
@@ -54,6 +61,7 @@ export default function Cart() {
 
   return (
     <div className="min-h-screen bg-linear-to-b from-slate-900 via-purple-900 to-slate-900 py-12">
+      
       <div className="container mx-auto px-4">
         
         {/* Main Grid */}
@@ -198,7 +206,7 @@ export default function Cart() {
             {/* Continue Shopping Button */}
             {cartItems.length > 0 && (
               <div className="mt-6">
-                <button className="btn btn-outline border-purple-500/30 text-purple-300 hover:bg-purple-600 hover:border-purple-600">
+                <button className="btn btn-outline border-purple-500/30 text-purple-300 hover:bg-purple-600 hover:border-purple-600" onClick={handleContinueShopping}>
                   <span>Continue Shopping...</span>
                 </button>
               </div>

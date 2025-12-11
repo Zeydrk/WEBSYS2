@@ -1,18 +1,13 @@
 // import libraries
-// import React from 'react';
-// import ReactDOM from 'react-dom/client';
-
-// import {useState } from "react";
-// import { ToastContainer, toast } from "react-toastify";
+import React, { useState, useEffect, useMemo } from "react";
+import { Link } from "react-router-dom";
 
 // hooks
 import useProduct from "../hooks/useProduct";
 
 // import needed components and assets
 import image from "../imgs/shop-banner-1.jpg";
-import { useState, useEffect } from "react";
-
-import { Link } from "react-router-dom";
+import bannerImg from "../imgs/banner 4.png";
 
 interface Pet {
   petId: string;
@@ -26,50 +21,93 @@ interface Pet {
   originPlanet: {
     planetId: string;
     planetName: string;
-    distanceFromSun:  number;
-  }
-
+    distanceFromSun: number;
+  };
 }
 
 export default function Products() {
   const petServices = useProduct();
-  const [pets, setPets] = useState([]);
 
-  // async function handleOnClick(e: React.MouseEvent<HTMLButtonElement>) {
-  //   e.preventDefault()
-    
-  // }
 
+  const [allPets, setAllPets] = useState<Pet[]>([]);
+  const [filteredPets, setFilteredPets] = useState<Pet[]>([]);
+  const [searchTerm, setSearchTerm] = useState("");
+  // checkbox tracker
+  const [selectedSpecies, setSelectedSpecies] = useState<string[]>([]);
+
+  // fetching data
   useEffect(() => {
     petServices
       .fetchPets()
-      .then((res) => {
-        // console.log(res);
-        setPets(res);
-        // console.log(pets);
+      .then((res: Pet[]) => {
+        setAllPets(res);
+        setFilteredPets(res);
       })
       .catch((err) => {
         console.error("Error fetching pets:", err);
       });
   }, []);
 
-  // const handleOnClick = () => {
-  //   console.log(petServices.product)
-  // }
+  
+  // We use useMemo so we don't recalculate this on every keystroke, only when pet data changes
+  const uniqueSpecies = useMemo(() => {
+    // Create a Set to get unique values, then convert back to Array
+    const speciesList = Array.from(new Set(allPets.map((pet) => pet.species)));
+    return speciesList.sort(); // Sort alphabetically
+  }, [allPets]);
+
+  // --- 3. Combined Filter Logic (Search + Checkboxes) ---
+  useEffect(() => {
+    const lowercasedSearchTerm = searchTerm.toLowerCase();
+
+    const results = allPets.filter((pet) => {
+      // A. Check if it matches the search text (Name OR Species)
+      const matchesSearch =
+        pet.name.toLowerCase().includes(lowercasedSearchTerm) ||
+        pet.species.toLowerCase().includes(lowercasedSearchTerm);
+
+      // B. Check if it matches the Checkboxes
+      // If no checkboxes are selected, return true (show all).
+      // If checkboxes ARE selected, check if this pet's species is in the list.
+      const matchesCheckbox =
+        selectedSpecies.length === 0 || selectedSpecies.includes(pet.species);
+
+      // Return true only if BOTH conditions are met
+      return matchesSearch && matchesCheckbox;
+    });
+
+    setFilteredPets(results);
+  }, [searchTerm, allPets, selectedSpecies]);
+
+  // --- Handlers ---
+
+  const handleSearchChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleSpeciesCheckboxChange = (species: string) => {
+    setSelectedSpecies((prevSelected) => {
+      if (prevSelected.includes(species)) {
+        // If already selected, remove it (uncheck)
+        return prevSelected.filter((s) => s !== species);
+      } else {
+        // If not selected, add it (check)
+        return [...prevSelected, species];
+      }
+    });
+  };
 
   return (
-    // Added text-gray-100 to ensure text is readable on the dark gradient by default
     <div className="min-h-screen bg-linear-to-b from-slate-900 via-purple-900 to-slate-900 text-gray-100 font-sans">
-      {/* hero banner */}
+      {/* Hero Banner */}
       <div
-        className="hero min-h-[60vh] lg:min-h-[70vh]" // Adjusted height for better proportions
+        className="hero min-h-[60vh] lg:min-h-[70vh]"
         style={{
           backgroundImage:
-            "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
-          backgroundAttachment: "fixed", // Parallax effect
+            `url(${bannerImg})`,
+          backgroundAttachment: "fixed",
         }}
       >
-        {/* Darker overlay for better text contrast */}
         <div className="hero-overlay bg-black/60 backdrop-blur-[2px]"></div>
         <div className="hero-content text-neutral-content text-center">
           <div className="max-w-xl">
@@ -85,12 +123,13 @@ export default function Products() {
         </div>
       </div>
 
-      {/* Main Content Wrapper - Centered with max-width */}
+      {/* Main Content Wrapper */}
       <div className="container mx-auto px-4 py-12">
         <div className="flex flex-col lg:flex-row gap-8">
+          
           {/* Sidebar and Filters */}
-          {/* Made sticky on desktop so it follows scroll */}
           <div className="w-full lg:w-1/4 shrink-0 lg:sticky lg:top-8 h-fit">
+            
             {/* Breadcrumbs */}
             <div className="breadcrumbs text-sm mb-4 text-purple-200">
               <ul>
@@ -101,15 +140,16 @@ export default function Products() {
               </ul>
             </div>
 
-            {/* Heading */}
+            {/* Results Count */}
             <div className="mb-4 border-b border-white/10 pb-2">
-              <h1 className="text-xl font-bold text-white">5 Results found</h1>
+              <h1 className="text-xl font-bold text-white">
+                {filteredPets.length} Results found
+              </h1>
             </div>
 
-            {/* Filter Card - Glass Effect */}
+            {/* Filter Card */}
             <div className="card bg-slate-800/40 backdrop-blur-md border border-white/10 shadow-xl overflow-hidden">
               <div className="card-body p-6">
-                {/* Header */}
                 <h3 className="card-title text-lg text-purple-300">
                   Filter Options
                 </h3>
@@ -134,41 +174,45 @@ export default function Products() {
                       type="search"
                       className="grow text-white placeholder-gray-400"
                       placeholder="Search species..."
-                      required
+                      value={searchTerm}
+                      onChange={handleSearchChange}
                     />
                   </label>
                 </div>
 
-                {/* Species Type Dropdown */}
+                {/* Species Type Dropdown (Dynamic) */}
                 <div className="mt-4">
                   <div className="collapse collapse-arrow border border-white/10 bg-slate-900/30 rounded-lg">
-                    <input type="checkbox" />
+                    <input type="checkbox" defaultChecked /> {/* Default open */}
                     <div className="collapse-title font-medium text-white group-hover:text-purple-300 transition-colors">
                       Specie Type
                     </div>
                     <div className="collapse-content text-sm text-gray-300">
                       <ul className="space-y-2 py-2">
-                        <li className="flex items-center gap-2 hover:text-purple-300 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            className="checkbox checkbox-xs checkbox-primary"
-                          />{" "}
-                          Specie 1
-                        </li>
-                        <li className="flex items-center gap-2 hover:text-purple-300 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            className="checkbox checkbox-xs checkbox-primary"
-                          />{" "}
-                          Specie 2
-                        </li>
-                        <li className="flex items-center gap-2 hover:text-purple-300 cursor-pointer">
-                          <input
-                            type="checkbox"
-                            className="checkbox checkbox-xs checkbox-primary"
-                          />{" "}
-                          Specie 3
-                        </li>
+                        {/* Dynamically Map Unique Species */}
+                        {uniqueSpecies.map((specie) => (
+                          <li
+                            key={specie}
+                            className="flex items-center gap-2 hover:text-purple-300 cursor-pointer"
+                          >
+                            <label className="flex items-center gap-2 cursor-pointer w-full">
+                              <input
+                                type="checkbox"
+                                className="checkbox checkbox-xs checkbox-primary"
+                                checked={selectedSpecies.includes(specie)}
+                                onChange={() => handleSpeciesCheckboxChange(specie)}
+                              />
+                              <span className="capitalize">{specie}</span>
+                            </label>
+                          </li>
+                        ))}
+
+                        {/* Fallback if no data is loaded yet */}
+                        {uniqueSpecies.length === 0 && (
+                          <li className="text-gray-500 italic">
+                            Loading species...
+                          </li>
+                        )}
                       </ul>
                     </div>
                   </div>
@@ -180,18 +224,15 @@ export default function Products() {
           {/* Product Grid */}
           <div className="w-full">
             <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
-              {/* Product Card 1 */}
-              {pets.map((pet: Pet) => (
+              {filteredPets.map((pet: Pet) => (
                 <Link to={`./${pet.petId}`} key={pet.petId} className="group">
-                  <div
-                    key={pet.petId}
-                    className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20"
-                  >
+                  <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20">
                     <figure>
+                      {/* Using the image from object if available, otherwise fallback to import */}
                       <img
-                        src={image}
-                        alt="Pet"
-                        className="group-hover:scale-110 transition-transform duration-500"
+                        src={pet.imageUrl || image}
+                        alt={pet.name}
+                        className="group-hover:scale-110 transition-transform duration-500 w-full h-full object-cover"
                       />
                     </figure>
                     <div className="card-body">
@@ -201,7 +242,7 @@ export default function Products() {
                       <h2 className="card-title text-2xl text-white">
                         {pet.name}
                       </h2>
-                      <p className="text-gray-200">
+                      <p className="text-gray-200 line-clamp-2">
                         {pet.description}
                       </p>
                       <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
@@ -222,161 +263,26 @@ export default function Products() {
                 </Link>
               ))}
 
-              <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20">
-                <figure>
-                  <img
-                    src={image}
-                    alt="Pet"
-                    className="group-hover:scale-110 transition-transform duration-500"
-                  />
-                </figure>
-                <div className="card-body">
-                  <div className="badge badge-secondary badge-outline mb-2">
-                    planet Name
-                  </div>
-                  <h2 className="card-title text-2xl text-white"></h2>
-                  <p className="text-gray-200">
-                    Rare space creature with unique abilities.
+              {/* No Results Message */}
+              {filteredPets.length === 0 && (
+                <div className="col-span-1 md:col-span-2 xl:col-span-3 text-center py-16 bg-slate-800/20 rounded-xl border border-white/5">
+                  <p className="text-2xl text-purple-300 font-bold mb-2">
+                    No galactic pets found
                   </p>
-                  <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
-                    <div className="flex flex-col">
-                      <span className="text-xs text-gray-300 uppercase">
-                        Price
-                      </span>
-                      <span className="text-xl font-bold text-primary-content">
-                        450.00 GC
-                      </span>
-                    </div>
-                    <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
-                      Add to cart
-                    </button>
-                  </div>
+                  <p className="text-gray-400">
+                    Try adjusting your search terms or filters.
+                  </p>
+                  <button 
+                    onClick={() => {
+                        setSearchTerm('');
+                        setSelectedSpecies([]);
+                    }}
+                    className="btn btn-ghost btn-sm mt-4 text-purple-200"
+                  >
+                    Clear all filters
+                  </button>
                 </div>
-              </div>
-
-              {/* Product Card 2 */}
-              <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20 cursor-pointer group">
-                <figure>
-                  <img
-                    src={image}
-                    alt="Pet"
-                    className="group-hover:scale-110 transition-transform duration-500"
-                  />
-                </figure>
-                <div className="card-body">
-                  <div className="badge badge-accent badge-outline mb-2">
-                    Planet Name
-                  </div>
-                  <h2 className="card-title text-2xl text-white">Pet 2</h2>
-                  <p className="text-gray-200">Quick Description of the pet.</p>
-                  <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
-                    <div className="flex flex-col">
-                      <span className="text-xs text-gray-300 uppercase">
-                        Price
-                      </span>
-                      <span className="text-xl font-bold text-primary-content">
-                        300.00 GC
-                      </span>
-                    </div>
-                    <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Product Card 3 */}
-              <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20 cursor-pointer group">
-                <figure>
-                  <img
-                    src={image}
-                    alt="Pet"
-                    className="group-hover:scale-110 transition-transform duration-500"
-                  />
-                </figure>
-                <div className="card-body">
-                  <div className="badge badge-outline text-white mb-2">
-                    Planet Name
-                  </div>
-                  <h2 className="card-title text-2xl text-white">Pet 3</h2>
-                  <p className="text-gray-200">Quick Description of the pet.</p>
-                  <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
-                    <div className="flex flex-col">
-                      <span className="text-xs text-gray-300 uppercase">
-                        Price
-                      </span>
-                      <span className="text-xl font-bold text-primary-content">
-                        150.00 GC
-                      </span>
-                    </div>
-                    <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Product Card 4 */}
-              <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20 cursor-pointer group">
-                <figure>
-                  <img
-                    src={image}
-                    alt="Pet"
-                    className="group-hover:scale-110 transition-transform duration-500"
-                  />
-                </figure>
-                <div className="card-body">
-                  <div className="badge badge-secondary badge-outline mb-2">
-                    Planet Name
-                  </div>
-                  <h2 className="card-title text-2xl text-white">Pet 4</h2>
-                  <p className="text-gray-200">Quick Description of the pet.</p>
-                  <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
-                    <div className="flex flex-col">
-                      <span className="text-xs text-gray-300 uppercase">
-                        Price
-                      </span>
-                      <span className="text-xl font-bold text-primary-content">
-                        900.00 GC
-                      </span>
-                    </div>
-                    <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
-
-              {/* Product Card 5 */}
-              <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20 cursor-pointer group">
-                <figure>
-                  <img
-                    src={image}
-                    alt="Pet"
-                    className="group-hover:scale-110 transition-transform duration-500"
-                  />
-                </figure>
-                <div className="card-body">
-                  <div className="badge badge-accent badge-outline mb-2">
-                    Planet Name
-                  </div>
-                  <h2 className="card-title text-2xl text-white">Pet 5</h2>
-                  <p className="text-gray-200">Quick Description of the pet.</p>
-                  <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
-                    <div className="flex flex-col">
-                      <span className="text-xs text-gray-300 uppercase">
-                        Price
-                      </span>
-                      <span className="text-xl font-bold text-primary-content">
-                        120.00 GC
-                      </span>
-                    </div>
-                    <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
-                      Add to cart
-                    </button>
-                  </div>
-                </div>
-              </div>
+              )}
             </div>
           </div>
         </div>

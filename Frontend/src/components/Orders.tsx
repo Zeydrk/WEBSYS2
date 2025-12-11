@@ -113,6 +113,7 @@ export default function Orders() {
         const firstItem = order.items[0]; 
 
         return (
+            
             <div className="card bg-slate-800/60 backdrop-blur-md shadow-xl border border-white/10 p-4">
                 {/* order ID and status symbol */}
                 <div className="flex justify-between items-center border-b border-white/10 pb-3 mb-3">
