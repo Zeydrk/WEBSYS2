@@ -5,7 +5,7 @@ module.exports = [
   {
     accountId: uuidv4(),
     customerId: ids.CUSTOMER_ZAPP,
-    username: 'zapp_brannigan',
+    email: 'zapp.the.great@doop.com',
     passwordHash: '$2b$10$abcdefghijklmnopqrstuv',
     role: 'admin',
     lastLogin: new Date(),
@@ -15,7 +15,7 @@ module.exports = [
   {
     accountId: uuidv4(),
     customerId: ids.CUSTOMER_LEIA,
-    username: 'general_organa',
+    email: 'leia.organa@rebel.org',
     passwordHash: '$2b$10$1234567890abcdefghijk',
     role: 'user',
     lastLogin: new Date(),
@@ -25,7 +25,7 @@ module.exports = [
   {
     accountId: uuidv4(),
     customerId: ids.CUSTOMER_WHO,
-    username: 'the_doctor',
+    email: 'thedoctor@tardis.net',
     passwordHash: '$2b$10$timeandspace123456789',
     role: 'user',
     lastLogin: new Date('2023-01-01'),
@@ -35,7 +35,7 @@ module.exports = [
   {
     accountId: uuidv4(),
     customerId: ids.CUSTOMER_RICK,
-    username: 'rick_c137',
+    email: 'c137@citadel.com',
     passwordHash: '$2b$10$wubbalubbadubdub12345',
     role: 'user',
     lastLogin: new Date(),
@@ -45,7 +45,7 @@ module.exports = [
   {
     accountId: uuidv4(),
     customerId: ids.CUSTOMER_GROOT,
-    username: 'iamgroot',
+    email: 'iam.groot@guardians.com',
     passwordHash: '$2b$10$iamgrootiamgrootiamgr',
     role: 'user',
     lastLogin: new Date(),
@@ -55,7 +55,7 @@ module.exports = [
   {
     accountId: uuidv4(),
     customerId: ids.CUSTOMER_ELLEN,
-    username: 'nostromo_survivor',
+    email: 'nripley.e@weyland.com',
     passwordHash: '$2b$10$xenomorph123456789012',
     role: 'user',
     lastLogin: new Date(),
@@ -65,7 +65,7 @@ module.exports = [
   {
     accountId: uuidv4(),
     customerId: ids.CUSTOMER_SPOCK,
-    username: 'mr_spock',
+    email: 's.spock@starfleet.org',
     passwordHash: '$2b$10$logicdictates12345678',
     role: 'admin',
     lastLogin: new Date(),
