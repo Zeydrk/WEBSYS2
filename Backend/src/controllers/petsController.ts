@@ -11,8 +11,8 @@ export const getAllPets = async (req: Request, res: Response) => {
       }]
     });
     res.json(pets);
-  } catch (error) {
-    res.status(500).json({ message: 'Error getting pets', error });
+  } catch (error: any) {
+    res.status(500).json({ message: 'Error getting pets', error: error?.message || String(error)});
   }
 };
 
