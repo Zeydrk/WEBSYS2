@@ -6,7 +6,7 @@ module.exports = (sequelize, DataTypes) => {
   class Pets extends Model {
     static associate(models) {
       // A Pet species belongs to one Planet
-      Pets.belongsTo(models.Planets, {
+      Pets.belongsTo(models.Planet, {
         foreignKey: 'planetId',
         as: 'originPlanet'
       });

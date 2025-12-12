@@ -9,10 +9,12 @@ module.exports = (sequelize, DataTypes) => {
         foreignKey: 'customerId',
         as: 'orders'
       });
+      
       Customer.belongsTo(models.Planet, {
           foreignKey: 'planetId',
           as: 'planet'
         });
+      
       Customer.belongsTo(models.Account, {
         foreignKey: 'accountId',
         as: 'account'
@@ -26,6 +28,10 @@ module.exports = (sequelize, DataTypes) => {
       defaultValue: DataTypes.UUIDV4
     },
     accountId: {
+      type: DataTypes.UUID,
+      allowNull: false
+    },
+    planetId: {
       type: DataTypes.UUID,
       allowNull: false
     },
