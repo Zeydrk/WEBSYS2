@@ -7,6 +7,8 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 4200;
 // change cors credebility with this variable
+
+// adders
 const HOST = process.env.HOST;
 // Enable CORS for frontend connection
 app.use(cors({
