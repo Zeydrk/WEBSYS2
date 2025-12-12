@@ -5,6 +5,8 @@ import { Link } from "react-router-dom";
 // hooks
 import useProduct from "../hooks/useProduct";
 
+// added comment
+
 // import needed components and assets
 import image from "../imgs/shop-banner-1.jpg";
 import bannerImg from "../imgs/banner 4.png";
