@@ -112,12 +112,10 @@ export default function Products() {
         <div className="hero-content text-neutral-content text-center">
           <div className="max-w-xl">
             <h1 className="mb-5 text-4xl lg:text-6xl font-extrabold text-transparent bg-clip-text bg-linear-to-r from-purple-200 to-pink-200 drop-shadow-lg">
-              "Get Exclusive Pets All Around The Galaxy"
+              Get Exclusive Pets All Around The Galaxy
             </h1>
             <p className="mb-5 text-lg text-gray-200">
-              Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
-              excepturi exercitationem quasi. In deleniti eaque aut repudiandae
-              et a id nisi.
+              Get the latest pets around the space with PROJECT:ISTC
             </p>
           </div>
         </div>
