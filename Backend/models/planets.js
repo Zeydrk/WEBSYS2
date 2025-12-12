@@ -22,7 +22,7 @@ module.exports = (sequelize, DataTypes) => {
     distanceFromSun: DataTypes.INTEGER
   }, {
     sequelize,
-    modelName: 'Planet',
+    modelName: 'Planets',
   });
   return Planets;
 };

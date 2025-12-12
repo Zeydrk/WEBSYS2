@@ -10,7 +10,7 @@ module.exports = (sequelize, DataTypes) => {
         as: 'orders'
       });
       
-      Customer.belongsTo(models.Planet, {
+      Customer.belongsTo(models.Planets, {
           foreignKey: 'planetId',
           as: 'planet'
         });
