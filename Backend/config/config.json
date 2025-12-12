@@ -1,25 +1,25 @@
 {
   "development": {
-    "username": "postgres.isvwdwzbtthspfexpxkb",
-    "password": "UNEHCXnHpmly7Egq",
+    "username": "postgres.rjgucdqplwghkbhmhexx",
+    "password": "Y05bMfM2CRpg1zcp",
     "database": "postgres",
-    "host": "aws-1-ap-northeast-1.pooler.supabase.com",
+    "host": "aws-1-ap-south-1.pooler.supabase.com",
     "dialect": "postgres",
     "port": 5432
   },
   "test": {
-    "username": "postgres.isvwdwzbtthspfexpxkb",
-    "password": "UNEHCXnHpmly7Egq",
+    "username": "postgres.rjgucdqplwghkbhmhexx",
+    "password": "Y05bMfM2CRpg1zcp",
     "database": "postgres",
-    "host": "aws-1-ap-northeast-1.pooler.supabase.com",
+    "host": "aws-1-ap-south-1.pooler.supabase.com",
     "dialect": "postgres",
     "port": 5432
   },
   "production": {
-    "username": "postgres.isvwdwzbtthspfexpxkb",
-    "password": "UNEHCXnHpmly7Egq",
+    "username": "postgres.rjgucdqplwghkbhmhexx",
+    "password": "Y05bMfM2CRpg1zcp",
     "database": "postgres",
-    "host": "aws-1-ap-northeast-1.pooler.supabase.com",
+    "host": "aws-1-ap-south-1.pooler.supabase.com",
     "dialect": "postgres",
     "port": 5432
   }
