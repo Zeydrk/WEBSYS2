@@ -10,7 +10,7 @@ const PORT = process.env.PORT || 4200;
 const HOST = process.env.HOST;
 // Enable CORS for frontend connection
 app.use(cors({
-  origin: HOST, // React default port
+  origin: HOST || true, // React default port
   credentials: true
 }));
 
