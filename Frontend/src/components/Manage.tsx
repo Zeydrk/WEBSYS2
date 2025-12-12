@@ -1,25 +1,37 @@
+// import { useState, FormEvent } from "react";
+import { useState, type FormEvent } from "react";
 // import { Link } from "react-router-dom";
 import image from "../imgs/shop-banner-1.jpg";
 
 export default function Manage() {
+  // TypeScript: Explicitly typing the state as a boolean
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+
+  // TypeScript: Typing the event as a Form Event on an HTML Form Element
+  const handleAddPet = (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    alert("Pet Added Successfully! (Connect backend to save data)");
+    setIsModalOpen(false);
+  };
+
   return (
     <>
       {/* main div */}
       <div>
-        <div className="min-h-screen bg-linear-to-b from-slate-900 via-purple-900 to-slate-900 text-gray-100 font-sans">
+        <div className="min-h-screen bg-linear-to-b from-slate-900 via-purple-900 to-slate-900 text-gray-100 font-sans relative">
           {/* hero banner */}
           <div
-            className="hero min-h-[30vh] lg:min-h-[40vh]" // Adjusted height for better proportions
+            className="hero min-h-[30vh] lg:min-h-[40vh]"
             style={{
               backgroundImage:
                 "url(https://img.daisyui.com/images/stock/photo-1507358522600-9f71e620c44e.webp)",
-              backgroundAttachment: "fixed", // Parallax effect
+              backgroundAttachment: "fixed",
             }}
           >
-            {/* Darker overlay for better text contrast */}
             <div className="hero-overlay bg-black/60 backdrop-blur-[2px]"></div>
           </div>
-          {/* Seller Profile Section - Overlapping the Banner */}
+
+          {/* Seller Profile Section */}
           <div className="container mx-auto px-4 relative z-10">
             <div className="-mt-24 mb-12 flex flex-col md:flex-row items-center md:items-end gap-6">
               {/* Avatar */}
@@ -63,15 +75,36 @@ export default function Manage() {
                 </p>
               </div>
 
-              {/* Action Button */}
+              {/* ADD BUTTON */}
+              <div className="pb-4 md:pb-0">
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="btn btn-lg bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-400 hover:to-teal-400 text-white border-none shadow-lg shadow-emerald-500/30 flex items-center gap-2 group transition-all duration-300 hover:scale-105"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    strokeWidth={2.5}
+                    stroke="currentColor"
+                    className="size-6 group-hover:rotate-90 transition-transform"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      d="M12 4.5v15m7.5-7.5h-15"
+                    />
+                  </svg>
+                  Add New Pet
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Main Content Wrapper - Centered with max-width */}
+          {/* Main Content Wrapper */}
           <div className="container mx-auto px-4 py-12">
             <div className="flex flex-col lg:flex-row gap-8">
               {/* Sidebar and Filters */}
-              {/* Made sticky on desktop so it follows scroll */}
               <div className="w-full lg:w-1/4 shrink-0 lg:sticky lg:top-8 h-fit">
                 {/* Breadcrumbs */}
                 <div className="breadcrumbs text-sm mb-4 text-purple-200">
@@ -90,14 +123,12 @@ export default function Manage() {
                   </h1>
                 </div>
 
-                {/* Filter Card - Glass Effect */}
+                {/* Filter Card */}
                 <div className="card bg-slate-800/40 backdrop-blur-md border border-white/10 shadow-xl overflow-hidden">
                   <div className="card-body p-6">
-                    {/* Header */}
                     <h3 className="card-title text-lg text-purple-300">
                       Filter Options
                     </h3>
-
                     {/* Search Bar */}
                     <div className="form-control w-full mt-2">
                       <label className="input input-bordered border-white/20 bg-slate-900/50 flex items-center gap-2 focus-within:border-purple-400 focus-within:ring-1 focus-within:ring-purple-400 text-sm">
@@ -164,6 +195,7 @@ export default function Manage() {
               {/* Product Grid */}
               <div className="w-full">
                 <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6">
+                  {/* Product Card 1 */}
                   <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20">
                     <figure>
                       <img
@@ -176,7 +208,7 @@ export default function Manage() {
                       <div className="badge badge-secondary badge-outline mb-2">
                         planet Name
                       </div>
-                      <h2 className="card-title text-2xl text-white"></h2>
+                      <h2 className="card-title text-2xl text-white">Pet 1</h2>
                       <p className="text-gray-200">
                         Rare space creature with unique abilities.
                       </p>
@@ -195,143 +227,116 @@ export default function Manage() {
                       </div>
                     </div>
                   </div>
-
-                  {/* Product Card 2 */}
-                  <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20 cursor-pointer group">
-                    <figure>
-                      <img
-                        src={image}
-                        alt="Pet"
-                        className="group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </figure>
-                    <div className="card-body">
-                      <div className="badge badge-accent badge-outline mb-2">
-                        Planet Name
-                      </div>
-                      <h2 className="card-title text-2xl text-white">Pet 2</h2>
-                      <p className="text-gray-200">
-                        Quick Description of the pet.
-                      </p>
-                      <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
-                        <div className="flex flex-col">
-                          <span className="text-xs text-gray-300 uppercase">
-                            Price
-                          </span>
-                          <span className="text-xl font-bold text-primary-content">
-                            300.00 GC
-                          </span>
-                        </div>
-                        <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
-                          Add to cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Product Card 3 */}
-                  <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20 cursor-pointer group">
-                    <figure>
-                      <img
-                        src={image}
-                        alt="Pet"
-                        className="group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </figure>
-                    <div className="card-body">
-                      <div className="badge badge-outline text-white mb-2">
-                        Planet Name
-                      </div>
-                      <h2 className="card-title text-2xl text-white">Pet 3</h2>
-                      <p className="text-gray-200">
-                        Quick Description of the pet.
-                      </p>
-                      <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
-                        <div className="flex flex-col">
-                          <span className="text-xs text-gray-300 uppercase">
-                            Price
-                          </span>
-                          <span className="text-xl font-bold text-primary-content">
-                            150.00 GC
-                          </span>
-                        </div>
-                        <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
-                          Add to cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Product Card 4 */}
-                  <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20 cursor-pointer group">
-                    <figure>
-                      <img
-                        src={image}
-                        alt="Pet"
-                        className="group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </figure>
-                    <div className="card-body">
-                      <div className="badge badge-secondary badge-outline mb-2">
-                        Planet Name
-                      </div>
-                      <h2 className="card-title text-2xl text-white">Pet 4</h2>
-                      <p className="text-gray-200">
-                        Quick Description of the pet.
-                      </p>
-                      <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
-                        <div className="flex flex-col">
-                          <span className="text-xs text-gray-300 uppercase">
-                            Price
-                          </span>
-                          <span className="text-xl font-bold text-primary-content">
-                            900.00 GC
-                          </span>
-                        </div>
-                        <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
-                          Add to cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Product Card 5 */}
-                  <div className="card w-full bg-base-100 shadow-xl image-full hover:scale-[1.02] transition-transform duration-300 hover:shadow-purple-500/20 cursor-pointer group">
-                    <figure>
-                      <img
-                        src={image}
-                        alt="Pet"
-                        className="group-hover:scale-110 transition-transform duration-500"
-                      />
-                    </figure>
-                    <div className="card-body">
-                      <div className="badge badge-accent badge-outline mb-2">
-                        Planet Name
-                      </div>
-                      <h2 className="card-title text-2xl text-white">Pet 5</h2>
-                      <p className="text-gray-200">
-                        Quick Description of the pet.
-                      </p>
-                      <div className="card-actions justify-between items-center mt-4 pt-4 border-t border-white/20">
-                        <div className="flex flex-col">
-                          <span className="text-xs text-gray-300 uppercase">
-                            Price
-                          </span>
-                          <span className="text-xl font-bold text-primary-content">
-                            120.00 GC
-                          </span>
-                        </div>
-                        <button className="btn btn-primary btn-sm md:btn-md shadow-lg shadow-purple-900/50 border-none bg-linear-to-r from-purple-600 to-indigo-600 hover:from-purple-500 hover:to-indigo-500 text-white">
-                          Add to cart
-                        </button>
-                      </div>
-                    </div>
-                  </div>
+                  {/* Additional cards here... */}
                 </div>
               </div>
             </div>
           </div>
         </div>
+
+        {/* MODAL POPUP FORM */}
+        {isModalOpen && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
+            {/* Backdrop */}
+            <div
+              className="absolute inset-0 bg-black/80 backdrop-blur-sm"
+              onClick={() => setIsModalOpen(false)}
+            ></div>
+
+            {/* Modal Content */}
+            <div className="relative w-full max-w-lg bg-slate-900 border border-purple-500/30 rounded-2xl shadow-2xl shadow-purple-900/50 overflow-hidden transform transition-all animate-in fade-in zoom-in-95 duration-200">
+              
+              {/* Header */}
+              <div className="bg-gradient-to-r from-slate-900 via-purple-900/50 to-slate-900 p-6 border-b border-white/10 flex justify-between items-center">
+                <h3 className="text-2xl font-bold text-white">Add New Creature</h3>
+                <button 
+                  onClick={() => setIsModalOpen(false)}
+                  className="btn btn-ghost btn-sm btn-circle text-gray-400 hover:text-white"
+                >
+                  ✕
+                </button>
+              </div>
+
+              {/* Form Body */}
+              <form onSubmit={handleAddPet} className="p-6 space-y-4">
+                
+                {/* Pet Name */}
+                <div className="form-control">
+                  <label className="label">
+                    <span className="label-text text-gray-300">Creature Name</span>
+                  </label>
+                  <input
+                    type="text"
+                    placeholder="e.g. Void Crawler"
+                    className="input input-bordered bg-slate-800/50 border-white/10 focus:border-purple-400 focus:ring-1 focus:ring-purple-400 text-white w-full"
+                    required
+                  />
+                </div>
+
+                {/* Price and Planet */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-gray-300">Price (GC)</span>
+                    </label>
+                    <input
+                      type="number"
+                      placeholder="0.00"
+                      className="input input-bordered bg-slate-800/50 border-white/10 focus:border-purple-400 text-white w-full"
+                      required
+                    />
+                  </div>
+                  <div className="form-control">
+                    <label className="label">
+                      <span className="label-text text-gray-300">Planet Origin</span>
+                    </label>
+                    <select className="select select-bordered bg-slate-800/50 border-white/10 text-white w-full">
+                      <option disabled defaultValue="Select Planet">Select Planet</option>
+                      <option>Mars</option>
+                      <option>Neptune</option>
+                      <option>Kepler-186f</option>
+                      <option>Sector 7</option>
+                    </select>
+                  </div>
+                </div>
+
+                {/* Description */}
+                <div className="form-control flex flex-col">
+                  <label className="label">
+                    <span className="label-text text-gray-300">Description</span>
+                  </label>
+                  <textarea
+                    className="textarea w-110 textarea-bordered bg-slate-800/50 border-white/10 focus:border-purple-400 text-white h-24"
+                    placeholder="Describe the creature's abilities..."
+                  ></textarea>
+                </div>
+
+                {/* Image Upload */}
+                <div className="form-control">
+                    <label className="label"><span className="label-text text-gray-300">Image</span></label>
+                    <input type="file" className="file-input file-input-bordered file-input-primary w-full bg-slate-800/50 text-gray-300" />
+                </div>
+
+                {/* Actions */}
+                <div className="flex gap-3 mt-6 pt-2">
+                  <button
+                    type="button"
+                    onClick={() => setIsModalOpen(false)}
+                    className="btn btn-ghost text-gray-400 hover:text-white flex-1"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    className="btn btn-primary bg-gradient-to-r from-purple-600 to-indigo-600 border-none text-white flex-1 shadow-lg shadow-purple-900/40"
+                  >
+                    Publish Creature
+                  </button>
+                </div>
+              </form>
+            </div>
+          </div>
+        )}
       </div>
     </>
   );
